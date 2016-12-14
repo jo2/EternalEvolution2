@@ -11,7 +11,10 @@
 
 #region Using Statements
 
+using GameStateManagementSample;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 #endregion Using Statements
 
@@ -30,7 +33,8 @@ namespace GameStateManagement
         private GraphicsDeviceManager graphics;
         private ScreenManager screenManager;
 
-       
+
+        private Song backgroundMusic;
 
         // By preloading any assets used by UI rendering, we avoid framerate glitches
         // when they suddenly need to be loaded in the middle of a menu transition.
@@ -74,6 +78,14 @@ namespace GameStateManagement
             {
                 Content.Load<object>(asset);
             }
+
+            Global.soundOn = true;
+
+            //backgroundMusic = Song.FromUri("backgroundMusic", new Uri("Content/backgroundMusic", UriKind.Relative));
+            //System.Diagnostics.Process.Start("C:\\Users\\Johannes Teklote\\Documents\\Uni Projekte\\Seminar Computerspiele\\Sounds\\backgroundMusic.mp3");
+            //backgroundMusic = Content.Load<Song>("backgroundMusic");
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(backgroundMusic);
         }
 
         #endregion Initialization

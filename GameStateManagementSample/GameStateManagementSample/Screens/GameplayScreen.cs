@@ -23,6 +23,7 @@ using System.Threading;
 using System.Collections.Generic;
 using RogueSharp.DiceNotation;
 using GameStateManagementSample.Screens;
+using Microsoft.Xna.Framework.Audio;
 
 #endregion Using Statements
 
@@ -48,6 +49,7 @@ namespace GameStateManagement
 
         private Texture2D wallSprite;
         private Texture2D floorSprite;
+        private SoundEffect bodyHit;
 
         private IMap map;
 
@@ -90,6 +92,7 @@ namespace GameStateManagement
 
             wallSprite = content.Load<Texture2D>("wall");
             floorSprite = content.Load<Texture2D>("floor");
+            bodyHit = content.Load<SoundEffect>("Body_Hit_32");
 
             IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(50, 30, 100, 7, 3);
             map = Map.Create(mapCreationStrategy);
@@ -121,7 +124,7 @@ namespace GameStateManagement
             };*/
             this.AddAggressiveEnemies(10);
             Global.GameState = GameStates.PlayerTurn;
-            Global.CombatManager = new CombatManager(player, mobs);
+            Global.CombatManager = new CombatManager(player, mobs, bodyHit);
         }
 
         /// <summary>

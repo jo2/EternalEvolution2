@@ -21,5 +21,6 @@ namespace GameStateManagementSample
         public static readonly IRandom Random = new DotNetRandom();
         public static GameStates GameState { get; set; }
         public static CombatManager CombatManager;
+        public static Boolean soundOn { get; set; }
     }
 }

@@ -9,28 +9,32 @@
 
 #endregion File Description
 
-namespace GameStateManagement
-{
+using GameStateManagementSample;
+using System;
+
+namespace GameStateManagement {
     /// <summary>
     /// The options screen is brought up over the top of the main menu
     /// screen, and gives the user a chance to configure the game
     /// in various hopefully useful ways.
     /// </summary>
-    internal class OptionsMenuScreen : MenuScreen
-    {
+    internal class OptionsMenuScreen : MenuScreen {
         #region Fields
 
         private MenuEntry ungulateMenuEntry;
         private MenuEntry languageMenuEntry;
         private MenuEntry frobnicateMenuEntry;
         private MenuEntry elfMenuEntry;
+        private MenuEntry soundMenuENtry;
 
-        private enum Ungulate
-        {
+        private enum Ungulate {
             BactrianCamel,
             Dromedary,
             Llama,
         }
+
+        private static string[] sounds = { "On", "Off" };
+        private static int currentSound = 0;
 
         private static Ungulate currentUngulate = Ungulate.Dromedary;
 
@@ -49,13 +53,13 @@ namespace GameStateManagement
         /// Constructor.
         /// </summary>
         public OptionsMenuScreen()
-            : base("Options")
-        {
+            : base("Options") {
             // Create our menu entries.
             ungulateMenuEntry = new MenuEntry(string.Empty);
             languageMenuEntry = new MenuEntry(string.Empty);
             frobnicateMenuEntry = new MenuEntry(string.Empty);
             elfMenuEntry = new MenuEntry(string.Empty);
+            soundMenuENtry = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
@@ -66,6 +70,7 @@ namespace GameStateManagement
             languageMenuEntry.Selected += LanguageMenuEntrySelected;
             frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
             elfMenuEntry.Selected += ElfMenuEntrySelected;
+            soundMenuENtry.Selected += SoundMenuEntrySelected;
             back.Selected += OnCancel;
 
             // Add entries to the menu.
@@ -73,18 +78,19 @@ namespace GameStateManagement
             MenuEntries.Add(languageMenuEntry);
             MenuEntries.Add(frobnicateMenuEntry);
             MenuEntries.Add(elfMenuEntry);
+            MenuEntries.Add(soundMenuENtry);
             MenuEntries.Add(back);
         }
 
         /// <summary>
         /// Fills in the latest values for the options screen menu text.
         /// </summary>
-        private void SetMenuEntryText()
-        {
+        private void SetMenuEntryText() {
             ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
             frobnicateMenuEntry.Text = "Frobnicate: " + (frobnicate ? "on" : "off");
             elfMenuEntry.Text = "elf: " + elf;
+            soundMenuENtry.Text = "Sound: " + sounds[currentSound];
         }
 
         #endregion Initialization
@@ -94,8 +100,7 @@ namespace GameStateManagement
         /// <summary>
         /// Event handler for when the Ungulate menu entry is selected.
         /// </summary>
-        private void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
+        private void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
             currentUngulate++;
 
             if (currentUngulate > Ungulate.Llama)
@@ -107,8 +112,7 @@ namespace GameStateManagement
         /// <summary>
         /// Event handler for when the Language menu entry is selected.
         /// </summary>
-        private void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
+        private void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
             currentLanguage = (currentLanguage + 1) % languages.Length;
 
             SetMenuEntryText();
@@ -117,8 +121,7 @@ namespace GameStateManagement
         /// <summary>
         /// Event handler for when the Frobnicate menu entry is selected.
         /// </summary>
-        private void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
+        private void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
             frobnicate = !frobnicate;
 
             SetMenuEntryText();
@@ -127,9 +130,22 @@ namespace GameStateManagement
         /// <summary>
         /// Event handler for when the Elf menu entry is selected.
         /// </summary>
-        private void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
+        private void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
             elf++;
+
+            SetMenuEntryText();
+        }
+
+        private void SoundMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
+            currentSound = (currentSound + 1) % sounds.Length;
+
+            if (currentSound == 0) {
+                Global.soundOn = true;
+            } else if (currentSound == 1) {
+                Global.soundOn = false;
+            }
+
+            //Console.WriteLine("Sound changed to: " + Global.soundOn);
 
             SetMenuEntryText();
         }
