@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/background.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/blank.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/gamefont.spritefont</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/gradient.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/menufont.spritefont</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/wall.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/floor.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/player.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/hound.png</File>
+    <File>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/white.png</File>
+  </SourceFiles>
+</SourceFileCollection>
