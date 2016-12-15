@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Audio;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,17 +13,23 @@ namespace GameStateManagementSample
         private readonly Player player;
         private readonly List<Mob> mobs;
 
+        private readonly SoundEffect bodyHit;
+
         // When we construct the CombatManager class we want to pass in references
         // to the player and the list of enemies.
-        public CombatManager(Player lPlayer, List<Mob> lMobs)
+        public CombatManager(Player lPlayer, List<Mob> lMobs, SoundEffect lBodyHit)
         {
             player = lPlayer;
             mobs = lMobs;
+            bodyHit = lBodyHit;
         }
 
         // Use this method to resolve attacks between Figures
         public void Attack(Entity attacker, Entity defender)
         {
+            if (Global.soundOn) {
+                bodyHit.Play();
+            }
             // First create a twenty-sided die
             // Roll the die, add the attack bonus, and compare to the defender's armor class
             if (Global.Random.Next(20) + attacker.AttackBonus >= defender.ArmorClass)
