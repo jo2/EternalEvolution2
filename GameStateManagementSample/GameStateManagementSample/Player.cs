@@ -10,6 +10,8 @@ namespace GameStateManagementSample
     {
         public float Scale { get; set; }
 
+        public int Experience { get; set; }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             float multiplier = Scale * Sprite.Width;
@@ -49,7 +51,7 @@ namespace GameStateManagementSample
                     {
                         Global.CombatManager.Attack(this, enemy);
                     }
-                    return true;
+                    return true; 
                 }
             }
             else if (inputState.IsUp(PlayerIndex.One))

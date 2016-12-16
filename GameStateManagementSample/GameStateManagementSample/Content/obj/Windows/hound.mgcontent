@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/hound.png</SourceFile>
-  <SourceTime>2016-12-12T13:20:41.5765581+01:00</SourceTime>
-  <DestFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/hound.xnb</DestFile>
-  <DestTime>2016-12-14T15:31:07.751591+01:00</DestTime>
+  <SourceFile>C:/Users/spejss/Documents/GitHub/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/hound.png</SourceFile>
+  <SourceTime>2016-12-15T23:27:54.2306804+01:00</SourceTime>
+  <DestFile>C:/Users/spejss/Documents/GitHub/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/hound.xnb</DestFile>
+  <DestTime>2016-12-15T23:28:18.5671007+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

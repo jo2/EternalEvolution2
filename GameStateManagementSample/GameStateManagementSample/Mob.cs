@@ -12,12 +12,14 @@ namespace GameStateManagementSample
         private readonly IMap map;
         private bool isAwareOfPlayer;
         private int followingCount = 0;
+        public int ExpReward { get; set; }
 
         // Update constructor to also take in an IMap
         public Mob(IMap lMap, PathToPlayer lPath)
         {
             map = lMap;
             path = lPath;
+            ExpReward = 10;
         }
 
         public void Draw(SpriteBatch spriteBatch)

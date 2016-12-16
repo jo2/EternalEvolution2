@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/player.png</SourceFile>
-  <SourceTime>2016-12-12T10:16:46.6698654+01:00</SourceTime>
-  <DestFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/player.xnb</DestFile>
-  <DestTime>2016-12-14T15:31:07.7359746+01:00</DestTime>
+  <SourceFile>C:/Users/spejss/Documents/GitHub/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/player.png</SourceFile>
+  <SourceTime>2016-12-15T23:27:54.2793092+01:00</SourceTime>
+  <DestFile>C:/Users/spejss/Documents/GitHub/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/player.xnb</DestFile>
+  <DestTime>2016-12-15T23:28:18.5585721+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

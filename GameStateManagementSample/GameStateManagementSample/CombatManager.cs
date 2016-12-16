@@ -48,10 +48,12 @@ namespace GameStateManagementSample
                         var enemy = defender as Mob;
                         // When an enemies health dropped below 0 they died
                         // Remove that enemy from the game
+                        player.Experience += player.Experience + enemy.ExpReward;
                         mobs.Remove(enemy);
                     }
                     // Later we'll want to display this kill message in the UI
                     Debug.WriteLine("{0} killed {1}", attacker.Name, defender.Name);
+                    Debug.WriteLine("Experience: {0}", player.Experience);
                 }
             }
             else
