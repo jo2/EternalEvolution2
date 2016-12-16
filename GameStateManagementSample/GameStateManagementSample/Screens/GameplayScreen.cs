@@ -295,7 +295,7 @@ namespace GameStateManagement
                 Cell enemyCell = GetRandomEmptyCell();
                 var pathFromMob = new PathToPlayer(player, map, content.Load<Texture2D>("white"));
                 pathFromMob.CreateFrom(enemyCell.X, enemyCell.Y);
-                var enemy = new Mob(map, pathFromMob)
+                var enemy = new Mob(map, pathFromMob, 50)
                 {
                     X = enemyCell.X,
                     Y = enemyCell.Y,
