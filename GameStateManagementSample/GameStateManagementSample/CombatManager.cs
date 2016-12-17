@@ -5,6 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using GameStateManagementSample;
+using GameStateManagement;
 
 namespace GameStateManagementSample
 {
@@ -14,6 +19,11 @@ namespace GameStateManagementSample
         private readonly List<Mob> mobs;
 
         private readonly SoundEffect bodyHit;
+
+        private ContentManager Content;
+        private SpriteFont gameFont;
+
+        private SpriteBatch spriteBatch;
 
         // When we construct the CombatManager class we want to pass in references
         // to the player and the list of enemies.
@@ -56,7 +66,7 @@ namespace GameStateManagementSample
                         var enemy = defender as Mob;
                         // When an enemies health dropped below 0 they died
                         // Remove that enemy from the game
-                        player.Experience += player.Experience + enemy.ExpReward;
+                        player.Experience = player.Experience + enemy.ExpReward;
                         mobs.Remove(enemy);
                     }
                     // Later we'll want to display this kill message in the UI
@@ -69,6 +79,12 @@ namespace GameStateManagementSample
                 // Show the miss message in the Debug log for now
                 Debug.WriteLine("{0} missed {1}", attacker.Name, defender.Name);
             }
+
+            //spriteBatch.Begin();
+
+            //spriteBatch.DrawString(gameFont, "Attack", new Vector2(500, 500), Color.Azure);
+
+            //spriteBatch.End();
         }
 
         // Helper method which returns the figure at a certain map cell

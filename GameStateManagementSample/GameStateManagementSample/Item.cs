@@ -14,6 +14,7 @@ namespace GameStateManagementSample
         public Texture2D Sprite { get; set; }
         public int AttackBonus { get; set; }
         public int ArmorClass { get; set; }
+        public int HealthBonus { get; set; }
         public int Damage { get; set; }
         public int Health { get; set; }
         public string Name { get; set; }

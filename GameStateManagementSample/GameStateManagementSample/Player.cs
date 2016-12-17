@@ -12,6 +12,7 @@ namespace GameStateManagementSample
 
         public int Experience { get; set; }
 
+        public int Level { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {
