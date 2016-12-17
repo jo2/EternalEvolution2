@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameStateManagementSample
 {
-    public class Item
+    public class Item : Entity
     {
         public int X { get; set; }
         public int Y { get; set; }
