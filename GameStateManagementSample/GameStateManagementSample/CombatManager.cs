@@ -27,6 +27,14 @@ namespace GameStateManagementSample
         // Use this method to resolve attacks between Figures
         public void Attack(Entity attacker, Entity defender)
         {
+            player.ArmorClass = 0;
+            player.AttackBonus = 0;
+            foreach(Item i in player.Equipment)
+            {
+                player.ArmorClass += i.ArmorClass;
+                player.AttackBonus += i.AttackBonus;
+            }
+
             if (Global.soundOn) {
                 bodyHit.Play();
             }

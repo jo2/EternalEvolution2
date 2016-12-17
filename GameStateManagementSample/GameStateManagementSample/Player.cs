@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RogueSharp;
-using System;
+using System.Collections.Generic;
 
 namespace GameStateManagementSample
 {
@@ -11,6 +11,7 @@ namespace GameStateManagementSample
         public float Scale { get; set; }
 
         public int Experience { get; set; }
+
 
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -253,6 +253,10 @@ namespace GameStateManagement
                 }
             }
 
+            spriteBatch.DrawString(gameFont, "HP: " + player.Health, new Vector2(0, 0), Color.Red);
+            spriteBatch.DrawString(gameFont, "Armor: " + player.ArmorClass, new Vector2(300, 0), Color.Green);
+            spriteBatch.DrawString(gameFont, "Attack: " + player.AttackBonus, new Vector2(600, 0), Color.Purple);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
