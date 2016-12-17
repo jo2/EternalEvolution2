@@ -14,11 +14,6 @@ namespace GameStateManagementSample.Maps {
         private Texture2D doorSprite;
 
         public DungeonNorth(ContentManager lContent) : base(lContent) {
-            exit = new Cell(0, 0, true, true, false);
-            spawnPoint = exit;
-        }
-
-        public override void LoadContent() {
             wallSprite = content.Load<Texture2D>("wall");
             floorSprite = content.Load<Texture2D>("floor");
             doorSprite = content.Load<Texture2D>("door");
@@ -59,7 +54,9 @@ namespace GameStateManagementSample.Maps {
                     }
                 }
             }
+        }
 
+        public override void LoadContent() {
             base.LoadContent();
         }
 

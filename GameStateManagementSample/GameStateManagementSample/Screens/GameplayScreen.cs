@@ -47,6 +47,7 @@ namespace GameStateManagement {
         private Player player;
 
         private IDictionary<string, EternalEvolutionMap> maps;
+        private IDictionary<string, List<Mob>> mobsPerMap;
         private EternalEvolutionMap currentMap;
 
         private SpriteBatch spriteBatch;
@@ -104,9 +105,7 @@ namespace GameStateManagement {
             maps.Add("dungeonWest", new DungeonWest(content));
             maps.Add("forest", new Forest(content));
             maps.Add("city", new City(content));
-
-            maps.TryGetValue("city", out currentMap);
-
+            
             Cell startingCell = new Cell(2, 3, true, true, true);
             player = new Player {
                 X = startingCell.X,
@@ -119,8 +118,55 @@ namespace GameStateManagement {
                 Health = 50,
                 Name = "Mr. Rouge"
             };
+            
+            EternalEvolutionMap m;
+            
+            mobsPerMap = new Dictionary<string, List<Mob>>();
+            maps.TryGetValue("dungeonCentral", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for central: " + m.mobs);
+            mobsPerMap.Add("dungeonCentral", m.mobs);
 
+            maps.TryGetValue("dungeonNorth", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for north: " + m.mobs);
+            mobsPerMap.Add("dungeonNorth", m.mobs);
+
+            maps.TryGetValue("dungeonEast", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for east: " + m.mobs);
+            mobsPerMap.Add("dungeonEast", m.mobs);
+
+            maps.TryGetValue("dungeonSouth", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for south: " + m.mobs);
+            mobsPerMap.Add("dungeonSouth", m.mobs);
+
+            maps.TryGetValue("dungeonWest", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for west: " + m.mobs);
+            mobsPerMap.Add("dungeonWest", m.mobs);
+
+            maps.TryGetValue("forest", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for forest: " + m.mobs);
+            mobsPerMap.Add("forest", m.mobs);
+
+            maps.TryGetValue("city", out m);
+            m.player = player;
+            m.LoadContent();
+            Console.WriteLine("mobs for city: " + m.mobs);
+            mobsPerMap.Add("city", m.mobs);
+
+            maps.TryGetValue("city", out currentMap);
             currentMap.player = player;
+
             currentMap.LoadContent();
 
             UpdatePlayerFieldOfView();
@@ -160,12 +206,15 @@ namespace GameStateManagement {
                 //Map wechseln
                 Debug.WriteLine("change map to: " + ret);
                 EternalEvolutionMap temp = currentMap;
+                List<Mob> tempList = currentMap.mobs;
                 maps.TryGetValue(ret, out currentMap);
                 currentMap.lastMap = temp;
                 player.X = currentMap.spawnPoint.X;
                 player.Y = currentMap.spawnPoint.Y;
                 currentMap.player = player;
-                currentMap.LoadContent();
+                mobsPerMap.TryGetValue(ret, out currentMap.mobs);
+
+                Console.WriteLine("mobs: " + currentMap.mobs);
 
                 Global.GameState = GameStates.PlayerTurn;
                 Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);

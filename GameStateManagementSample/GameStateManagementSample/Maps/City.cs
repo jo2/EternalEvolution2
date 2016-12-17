@@ -56,7 +56,7 @@ namespace GameStateManagementSample.Maps {
         }
 
         public override void LoadContent() {
-            base.LoadContent();
+            mobs = new List<Mob>();
         }
 
         public override string Update(GameTime gameTime) {
