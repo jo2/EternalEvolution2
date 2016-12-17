@@ -52,20 +52,15 @@ namespace GameStateManagementSample.Maps {
                 spawnPoint = map.GetCell(centerExit.X, centerExit.Y + 1);
             }
             if (ComparePositions(player, topExit) && player.hasMoved) {
-                Console.WriteLine("north");
                 return "dungeonNorth";
             } else if (ComparePositions(player, rightExit) && player.hasMoved) {
-                Console.WriteLine("east");
                 return "dungeonEast";
             } else if (ComparePositions(player, bottomExit) && player.hasMoved) {
-                Console.WriteLine("south");
                 return "dungeonSouth";
             } else if (ComparePositions(player, leftExit) && player.hasMoved) {
-                Console.WriteLine("west");
                 return "dungeonWest";
             } else if (ComparePositions(player, centerExit) && player.hasMoved) {
-                Console.WriteLine("forrest");
-                return "forrest";
+                return "forest";
             }
             return null;
         }

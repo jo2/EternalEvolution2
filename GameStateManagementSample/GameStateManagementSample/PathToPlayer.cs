@@ -28,9 +28,6 @@ namespace GameStateManagementSample {
         }
         public void CreateFrom(int x, int y) {
             try {
-                Console.WriteLine("source: (" + x + "|" + y + "), dest: (" + player.X + "|" + player.Y + ")");
-                Path p = pathFinder.ShortestPath(map.GetCell(x, y), map.GetCell(player.X, player.Y));
-                //Console.WriteLine(p.Length);
                 cells = (IEnumerable<Cell>) pathFinder.ShortestPath(map.GetCell(x, y), map.GetCell(player.X, player.Y)).Steps;
             }catch (PathNotFoundException e) {
                 Console.WriteLine("Path Not Found: " + e.Message + ", " + e.Data);

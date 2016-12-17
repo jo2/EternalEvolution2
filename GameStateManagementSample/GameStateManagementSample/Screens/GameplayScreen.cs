@@ -102,10 +102,12 @@ namespace GameStateManagement {
             maps.Add("dungeonEast", new DungeonEast(content));
             maps.Add("dungeonSouth", new DungeonSouth(content));
             maps.Add("dungeonWest", new DungeonWest(content));
+            maps.Add("forest", new Forest(content));
+            maps.Add("city", new City(content));
 
-            maps.TryGetValue("dungeonCentral", out currentMap);
+            maps.TryGetValue("city", out currentMap);
 
-            Cell startingCell = new Cell(25, 15, true, true, true);
+            Cell startingCell = new Cell(2, 3, true, true, true);
             player = new Player {
                 X = startingCell.X,
                 Y = startingCell.Y,
@@ -154,11 +156,12 @@ namespace GameStateManagement {
                 GameOverScreen.Load(ScreenManager, PlayerIndex.One);
             }
             string ret = currentMap.Update(gameTime);
-            EternalEvolutionMap temp;
             if (ret != null) {
                 //Map wechseln
+                Debug.WriteLine("change map to: " + ret);
+                EternalEvolutionMap temp = currentMap;
                 maps.TryGetValue(ret, out currentMap);
-                Console.WriteLine("change map to: " + currentMap.spawnPoint + ", player: " + player);
+                currentMap.lastMap = temp;
                 player.X = currentMap.spawnPoint.X;
                 player.Y = currentMap.spawnPoint.Y;
                 currentMap.player = player;
@@ -168,7 +171,6 @@ namespace GameStateManagement {
                 Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
 
                 Draw(gameTime);
-                Console.WriteLine("___________________________");
             }
         }
 
