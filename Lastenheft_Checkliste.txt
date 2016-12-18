@@ -5,7 +5,7 @@
 
 *Min. drei Karten sind durch Übergange/Gänge miteinander verbunden
 
-Min. 3 verschiedene Gegner-Typen (Aussehen, Lebenspunkte, Geschwindigkeit, etc.) sind in den Räumen und bewegen sich eigenständig
+*Min. 3 verschiedene Gegner-Typen (Aussehen, Lebenspunkte, Geschwindigkeit, etc.) sind in den Räumen und bewegen sich eigenständig
 	- Kollisionen sind abzufangen
 
 In den Räumen sind Nah- und Fernkampfwaffen vorhanden (können vom Spieler eingesammelt werden)
