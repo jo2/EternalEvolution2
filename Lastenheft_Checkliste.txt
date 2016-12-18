@@ -1,0 +1,36 @@
+*Die Spielfigur ist mittels Tastatur und/oder Maus zu bewegen
+	- Kollisionen sind abzufangen
+
+*Eine Karte (eine Ebene eines Dungeons) hat min. 5 Räume
+
+*Min. drei Karten sind durch Übergange/Gänge miteinander verbunden
+
+Min. 3 verschiedene Gegner-Typen (Aussehen, Lebenspunkte, Geschwindigkeit, etc.) sind in den Räumen und bewegen sich eigenständig
+	- Kollisionen sind abzufangen
+
+In den Räumen sind Nah- und Fernkampfwaffen vorhanden (können vom Spieler eingesammelt werden)
+
+*Gegner können angegriffen werden und der Spieler wird von Gegnern angegriffen
+
+Der Angriff wird visuell dargestellt (Schadenspunkte, Healthbar, etc.)
+
+Gegner ohne Lebenspunkte werden aus dem Spiel entfernt
+	- Ein besiegter Gegner hinterlässt Geld(Gold) und/oder andere Gegenstände
+	- Ein besiegter Gegner steigert die Erfahrungspunkte eines Spielers
+
+*Verliert der Spieler alle Lebenspunkte, ist das Spiel beendet
+
+Ein besonderer Gegenstand ist auf der untersten Ebene zu finden
+
+Spiel-Abbruchbedigungen müssen festgestellt werden (Spiel wurde gewonnen, Spiel wurde verloren) und anschließend wird das Spiel beendet
+	- Beendigung des Spiels bedeutet, dass das Spiel ins Menü zurückkehrt
+
+Eine GUI-Anzeige muss relevante Spielinformationen anzeigen
+	- Lebenspunkte, Waffe(n), etc.
+
+*Gegenstände/Monster werden zufällig auf der Karte verteilt
+
+*Sound-Effekte
+
+*Ein Menüsystem muss vorhanden sein
+	- GameStateManagement Sample
