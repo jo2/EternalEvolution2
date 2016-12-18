@@ -7,11 +7,11 @@ namespace GameStateManagementSample
 {
     public class Mob : Entity
     {
-        private readonly PathToPlayer path;
+        public readonly PathToPlayer path;
         public float Scale { get; set; }
-        private readonly IMap map;
-        private bool isAwareOfPlayer;
-        private int followingCount = 0;
+        public readonly IMap map;
+        public bool isAwareOfPlayer;
+        public int followingCount = 0;
 
         // Update constructor to also take in an IMap
         public Mob(IMap lMap, PathToPlayer lPath)

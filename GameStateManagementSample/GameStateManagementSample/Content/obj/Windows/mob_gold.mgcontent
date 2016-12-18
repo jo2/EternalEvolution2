@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/forest_wall.png</SourceFile>
-  <SourceTime>2016-12-18T17:16:22.2520908+01:00</SourceTime>
-  <DestFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/forest_wall.xnb</DestFile>
-  <DestTime>2016-12-18T17:17:05.6664051+01:00</DestTime>
+  <SourceFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/mob_gold.png</SourceFile>
+  <SourceTime>2009-02-26T23:20:02+01:00</SourceTime>
+  <DestFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/mob_gold.xnb</DestFile>
+  <DestTime>2016-12-18T17:31:57.8768955+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

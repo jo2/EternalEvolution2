@@ -18,9 +18,7 @@ namespace GameStateManagementSample.Maps {
         private Texture2D doorSprite;
 
         public City(ContentManager lContent) : base(lContent) {
-            wallSprite = content.Load<Texture2D>("city_wall");
-            floorSprite = content.Load<Texture2D>("city_floor");
-            doorSprite = content.Load<Texture2D>("door");
+            LoadSprites();
 
             IMapCreationStrategy<Map> mapCreationStrategy = new ForestMapCreationStrategy<Map>(mapWidth, mapHeight);
             map = Map.Create(mapCreationStrategy);
@@ -57,8 +55,14 @@ namespace GameStateManagementSample.Maps {
             base.Draw(spriteBatch);
         }
 
-        public override void LoadContent() {
+        public override void LoadContent(int numberOfMobs) {
             mobs = new List<Mob>();
+        }
+
+        public override void LoadSprites() {
+            wallSprite = content.Load<Texture2D>("city_wall");
+            floorSprite = content.Load<Texture2D>("city_floor");
+            doorSprite = content.Load<Texture2D>("door");
         }
 
         public override void setSpawnpoint() {

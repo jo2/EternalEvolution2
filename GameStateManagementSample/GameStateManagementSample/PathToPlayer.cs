@@ -30,9 +30,7 @@ namespace GameStateManagementSample {
             try {
                 cells = (IEnumerable<Cell>) pathFinder.ShortestPath(map.GetCell(x, y), map.GetCell(player.X, player.Y)).Steps;
             }catch (PathNotFoundException e) {
-                Console.WriteLine("Path Not Found: " + e.Message + ", " + e.Data);
             } catch (ArgumentOutOfRangeException e) {
-                Console.WriteLine("Fehler aufgetreten: " + e.Message);
             }
         }
         public void Draw(SpriteBatch spriteBatch) {

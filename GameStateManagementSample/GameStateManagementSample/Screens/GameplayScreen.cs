@@ -26,6 +26,8 @@ using GameStateManagementSample.Screens;
 using Microsoft.Xna.Framework.Audio;
 using GameStateManagementSample.Maps;
 using System.Diagnostics;
+using System.Xml.Serialization;
+using System.IO;
 
 #endregion Using Statements
 
@@ -38,26 +40,24 @@ namespace GameStateManagement {
     internal class GameplayScreen : GameScreen {
         #region Fields
 
-        private readonly int mapWidth = 50;
-        private readonly int mapHeight = 30;
+        public readonly int mapWidth = 50;
+        public readonly int mapHeight = 30;
 
-        private ContentManager content;
-        private SpriteFont gameFont;
+        public ContentManager content;
+        public SpriteFont gameFont;
 
-        private Player player;
+        public Player player;
 
-        private IDictionary<string, EternalEvolutionMap> maps;
-        private IDictionary<string, List<Mob>> mobsPerMap;
-        private EternalEvolutionMap currentMap;
+        public int[] mobsCount;
 
-        private SpriteBatch spriteBatch;
+        public IDictionary<string, EternalEvolutionMap> maps;
+        public IDictionary<string, List<Mob>> mobsPerMap;
+        public EternalEvolutionMap currentMap;
 
-        private Texture2D wallSprite;
-        private Texture2D floorSprite;
-        private Texture2D doorSprite;
-        private SoundEffect bodyHit;
+        public SpriteBatch spriteBatch;
 
-        private InputState inputState;
+        public SoundEffect bodyHit;
+        private bool loaded;
 
         #endregion Fields
 
@@ -66,9 +66,10 @@ namespace GameStateManagement {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameplayScreen() {
+        public GameplayScreen(bool lLoaded) {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            loaded = lLoaded;
         }
 
         /// <summary>
@@ -92,20 +93,25 @@ namespace GameStateManagement {
 
             spriteBatch = ScreenManager.SpriteBatch;
 
-            wallSprite = content.Load<Texture2D>("wall");
-            floorSprite = content.Load<Texture2D>("floor");
-            doorSprite = content.Load<Texture2D>("door");
             bodyHit = content.Load<SoundEffect>("Body_Hit_32");
 
-            maps = new Dictionary<string, EternalEvolutionMap>();
-            maps.Add("dungeonCentral", new DungeonCentral(content));
-            maps.Add("dungeonNorth", new DungeonNorth(content));
-            maps.Add("dungeonEast", new DungeonEast(content));
-            maps.Add("dungeonSouth", new DungeonSouth(content));
-            maps.Add("dungeonWest", new DungeonWest(content));
-            maps.Add("forest", new Forest(content));
-            maps.Add("city", new City(content));
-            
+            if (!loaded) {
+                maps = new Dictionary<string, EternalEvolutionMap>();
+                maps.Add("dungeonCentral", new DungeonCentral(content));
+                maps.Add("dungeonNorth", new DungeonNorth(content));
+                maps.Add("dungeonEast", new DungeonEast(content));
+                maps.Add("dungeonSouth", new DungeonSouth(content));
+                maps.Add("dungeonWest", new DungeonWest(content));
+                maps.Add("forest", new Forest(content));
+                maps.Add("city", new City(content));
+            } else {
+                EternalEvolutionMap map;
+                foreach (string s in maps.Keys) {
+                    maps.TryGetValue(s, out map);
+                    map.LoadSprites();
+                }
+            }
+
             Cell startingCell = new Cell(2, 3, true, true, true);
             player = new Player {
                 X = startingCell.X,
@@ -118,58 +124,47 @@ namespace GameStateManagement {
                 Health = 50,
                 Name = "Mr. Rouge"
             };
-            
+
             EternalEvolutionMap m;
-            
             mobsPerMap = new Dictionary<string, List<Mob>>();
-            maps.TryGetValue("dungeonCentral", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("dungeonCentral", m.mobs);
-
-            maps.TryGetValue("dungeonNorth", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("dungeonNorth", m.mobs);
-
-            maps.TryGetValue("dungeonEast", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("dungeonEast", m.mobs);
-
-            maps.TryGetValue("dungeonSouth", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("dungeonSouth", m.mobs);
-
-            maps.TryGetValue("dungeonWest", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("dungeonWest", m.mobs);
-
-            maps.TryGetValue("forest", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("forest", m.mobs);
-
-            maps.TryGetValue("city", out m);
-            m.player = player;
-            m.LoadContent();
-            mobsPerMap.Add("city", m.mobs);
+            if (loaded) {
+                int i = 0;
+                foreach (string s in maps.Keys) {
+                    Console.WriteLine("mobs in " + s + " after Spawn: " + mobsCount[i]);
+                    maps.TryGetValue(s, out m);
+                    m.player = player;
+                    m.LoadContent(mobsCount[i]);
+                    mobsPerMap.Add(s, m.mobs);
+                    i++;
+                }
+            } else {
+                foreach (string s in maps.Keys) {
+                    maps.TryGetValue(s, out m);
+                    m.player = player;
+                    m.LoadContent(10);
+                    mobsPerMap.Add(s, m.mobs);
+                }
+            }
 
             maps.TryGetValue("city", out currentMap);
             currentMap.player = player;
 
-            currentMap.LoadContent();
+            if (currentMap.GetType() == typeof(City)) {
+                foreach (Cell cell in currentMap.map.GetAllCells()) {
+                    currentMap.map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, true);
+                }
+            } else {
+                foreach (Cell cell in currentMap.map.GetAllCells()) {
+                    currentMap.map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, false);
+                }
+            }
 
             UpdatePlayerFieldOfView();
-
-            startingCell = currentMap.GetRandomEmptyCell();
-            var pathFromAggressiveEnemy = new PathToPlayer(player, currentMap.map, content.Load<Texture2D>("white"));
-            pathFromAggressiveEnemy.CreateFrom(startingCell.X, startingCell.Y);
+            loaded = false;
 
             Global.GameState = GameStates.PlayerTurn;
             Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
+
         }
 
         /// <summary>
@@ -191,8 +186,16 @@ namespace GameStateManagement {
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen) {
             base.Update(gameTime, otherScreenHasFocus, false);
             if (player.Health <= 0) {
+                mobsCount = new int[7];
+                int i = 0;
+                List<Mob> list;
+                foreach (string s in mobsPerMap.Keys) {
+                    mobsPerMap.TryGetValue(s, out list);
+                    mobsCount[i] = list.Count;
+                    i++;
+                }
                 Global.GameState = GameStates.GameOver;
-                GameOverScreen.Load(ScreenManager, PlayerIndex.One);
+                GameOverScreen.Load(ScreenManager, PlayerIndex.One, mobsCount, this);
             }
             string ret = currentMap.Update(gameTime);
             if (ret != null) {

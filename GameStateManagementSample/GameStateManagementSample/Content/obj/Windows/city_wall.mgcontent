@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/city_wall.png</SourceFile>
-  <SourceTime>2016-12-17T11:43:57.8362623+01:00</SourceTime>
+  <SourceTime>2016-12-18T17:16:22.2360897+01:00</SourceTime>
   <DestFile>C:/Users/Johannes Teklote/Documents/Uni Projekte/Seminar Computerspiele/EternalEvolution2/GameStateManagementSample/GameStateManagementSample/Content/bin/Windows/city_wall.xnb</DestFile>
-  <DestTime>2016-12-17T11:48:51.3200217+01:00</DestTime>
+  <DestTime>2016-12-18T17:17:05.6664051+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

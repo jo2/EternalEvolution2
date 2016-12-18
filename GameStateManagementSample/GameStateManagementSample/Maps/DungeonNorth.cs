@@ -8,15 +8,13 @@ using System;
 namespace GameStateManagementSample.Maps {
     public class DungeonNorth : EternalEvolutionMap {
         private Cell exit;
-        
+
         private Texture2D wallSprite;
         private Texture2D floorSprite;
         private Texture2D doorSprite;
 
         public DungeonNorth(ContentManager lContent) : base(lContent) {
-            wallSprite = content.Load<Texture2D>("wall");
-            floorSprite = content.Load<Texture2D>("floor");
-            doorSprite = content.Load<Texture2D>("door");
+            LoadSprites();
 
             IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(50, 30, 100, 7, 3);
             map = Map.Create(mapCreationStrategy);
@@ -28,9 +26,13 @@ namespace GameStateManagementSample.Maps {
                     break;
                 }
                 for (int x = 1; x < mapWidth; x++) {
-                    if (map.GetCell(x, y).IsWalkable) {
-                        exit = map.GetCell(x, y);
-                        found = true;
+                    try {
+                        if (map.GetCell(x, y).IsWalkable) {
+                            exit = map.GetCell(x, y);
+                            found = true;
+                            break;
+                        }
+                    } catch (IndexOutOfRangeException e) {
                         break;
                     }
                 }
@@ -43,21 +45,31 @@ namespace GameStateManagementSample.Maps {
                     break;
                 }
                 for (int x = 1; x < mapWidth; x++) {
-                    if (map.GetCell(x, y).IsWalkable) {
-                        spawnPoint = map.GetCell(x, y);
-                        if (CompareCells(exit, spawnPoint)) {
-                            continue;
-                        } else {
-                            found = true;
-                            break;
+                    try {
+                        if (map.GetCell(x, y).IsWalkable) {
+                            spawnPoint = map.GetCell(x, y);
+                            if (CompareCells(exit, spawnPoint)) {
+                                continue;
+                            } else {
+                                found = true;
+                                break;
+                            }
                         }
+                    } catch (IndexOutOfRangeException e) {
+                        break;
                     }
                 }
             }
         }
 
-        public override void LoadContent() {
-            base.LoadContent();
+        public override void LoadContent(int numberOfMobs) {
+            base.LoadContent(numberOfMobs);
+        }
+
+        public override void LoadSprites() {
+            wallSprite = content.Load<Texture2D>("wall");
+            floorSprite = content.Load<Texture2D>("floor");
+            doorSprite = content.Load<Texture2D>("door");
         }
 
         public override string Update(GameTime gameTime) {

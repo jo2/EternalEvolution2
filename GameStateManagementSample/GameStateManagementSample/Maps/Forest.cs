@@ -19,17 +19,77 @@ namespace GameStateManagementSample.Maps {
         private Texture2D doorSprite;
 
         public Forest(ContentManager lContent) : base(lContent) {
+            LoadSprites();
+
+            IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(50, 30, 100, 7, 3);
+            map = Map.Create(mapCreationStrategy);
+
+            bool found = false;
+
+            for (int x = mapWidth - 1; x > 1; x--) {
+                if (found) {
+                    break;
+                }
+                for (int y = 1; y < mapHeight; y++) {
+                    try {
+                        if (map.GetCell(x, y).IsWalkable) {
+                            cityExit = map.GetCell(x, y);
+                            found = true;
+                            break;
+                        }
+                    } catch (IndexOutOfRangeException e) {
+                        break;
+                    }
+                }
+            }
+
+            found = false;
+
+            for (int x = mapWidth - 1; x > 1; x--) {
+                if (found) {
+                    break;
+                }
+                for (int y = 1; y < mapHeight; y++) {
+                    try {
+                        if (map.GetCell(x, y).IsWalkable) {
+                            spawnPoint = map.GetCell(x, y);
+                            if (CompareCells(cityExit, spawnPoint)) {
+                                continue;
+                            } else {
+                                found = true;
+                                break;
+                            }
+                        }
+                    } catch (IndexOutOfRangeException e) {
+                        break;
+                    }
+                }
+            }
+
+            found = false;
+
+            for (int x = 1; x < mapWidth; x++) {
+                if (found) {
+                    break;
+                }
+                for (int y = 1; y < mapHeight; y++) {
+                    try {
+                        if (map.GetCell(x, y).IsWalkable) {
+                            dungeonExit = map.GetCell(x, y);
+                            found = true;
+                            break;
+                        }
+                    } catch (IndexOutOfRangeException e) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        public override void LoadSprites() {
             wallSprite = content.Load<Texture2D>("forest_wall");
             floorSprite = content.Load<Texture2D>("forest_floor");
             doorSprite = content.Load<Texture2D>("door");
-
-            IMapCreationStrategy<Map> mapCreationStrategy = new ForestMapCreationStrategy<Map>(mapWidth, mapHeight);
-            map = Map.Create(mapCreationStrategy);
-
-            cityExit = map.GetCell(1, 1);
-            dungeonExit = map.GetCell(mapWidth - 2, mapHeight - 2);
-
-            spawnPoint = map.GetCell(1, 2);
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
@@ -55,12 +115,12 @@ namespace GameStateManagementSample.Maps {
             spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
             exitPos = new Vector2(cityExit.X * sizeOfSprites * scale, cityExit.Y * sizeOfSprites * scale);
             spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
-            
+
             base.Draw(spriteBatch);
         }
 
-        public override void LoadContent() {
-            base.LoadContent();
+        public override void LoadContent(int numberOfMobs) {
+            base.LoadContent(numberOfMobs);
         }
 
         public override string Update(GameTime gameTime) {

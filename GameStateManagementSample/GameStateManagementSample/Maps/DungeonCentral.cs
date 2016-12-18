@@ -19,9 +19,7 @@ namespace GameStateManagementSample.Maps {
         private Texture2D doorSprite;
 
         public DungeonCentral(ContentManager lContent) : base(lContent) {
-            wallSprite = content.Load<Texture2D>("wall");
-            floorSprite = content.Load<Texture2D>("floor");
-            doorSprite = content.Load<Texture2D>("door");
+            LoadSprites();
 
             IMapCreationStrategy<Map> mapCreationStrategy = new BorderOnlyMapCreationStrategy<Map>(mapWidth, mapHeight);
             map = Map.Create(mapCreationStrategy);
@@ -35,8 +33,8 @@ namespace GameStateManagementSample.Maps {
             spawnPoint = map.GetCell(centerExit.X, centerExit.Y + 1);
         }
 
-        public override void LoadContent() {
-            base.LoadContent();
+        public override void LoadContent(int numberOfMobs) {
+            base.LoadContent(numberOfMobs);
         }
 
         public override string Update(GameTime gameTime) {
@@ -103,6 +101,12 @@ namespace GameStateManagementSample.Maps {
             spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
 
             base.Draw(spriteBatch);
+        }
+
+        public override void LoadSprites() {
+            wallSprite = content.Load<Texture2D>("wall");
+            floorSprite = content.Load<Texture2D>("floor");
+            doorSprite = content.Load<Texture2D>("door");
         }
     }
 }

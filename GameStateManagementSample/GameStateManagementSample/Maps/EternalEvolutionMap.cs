@@ -20,9 +20,8 @@ namespace GameStateManagementSample.Maps {
             content = lContent;
         }
 
-        public virtual void LoadContent() {
-            AddAggressiveEnemies(0);
-            //AddAggressiveEnemies(10);
+        public virtual void LoadContent(int numberOfMobs) {
+            AddAggressiveEnemies(numberOfMobs);
         }
 
         public virtual void setSpawnpoint() {
@@ -41,6 +40,10 @@ namespace GameStateManagementSample.Maps {
                     enemy.Draw(spriteBatch);
                 }
             }
+        }
+
+        public virtual void LoadSprites() {
+
         }
 
         public bool ComparePositions(Player p, Cell c) {
@@ -73,17 +76,52 @@ namespace GameStateManagementSample.Maps {
                 Cell enemyCell = GetRandomEmptyCell();
                 var pathFromMob = new PathToPlayer(player, map, content.Load<Texture2D>("white"));
                 pathFromMob.CreateFrom(enemyCell.X, enemyCell.Y);
-                var enemy = new Mob(map, pathFromMob) {
-                    X = enemyCell.X,
-                    Y = enemyCell.Y,
-                    Sprite = content.Load<Texture2D>("hound"),
-                    Scale = 0.25f,
-                    ArmorClass = 10,
-                    AttackBonus = 0,
-                    Damage = Global.Random.Next(5),
-                    Health = 10,
-                    Name = "Hunting Hound " + i
-                };
+                int rnd = Global.Random.Next(2);
+                var enemy = new Mob(map, pathFromMob);
+                switch (rnd) {
+                    case 0:
+                        enemy = new Mob(map, pathFromMob) {
+                            X = enemyCell.X,
+                            Y = enemyCell.Y,
+                            Sprite = content.Load<Texture2D>("hound"),
+                            Scale = 0.25f,
+                            ArmorClass = 10,
+                            AttackBonus = 0,
+                            Damage = Global.Random.Next(2, 4),
+                            Health = 7,
+                            Name = "Hunting Hound " + i
+                        };
+                        break;
+                    case 1:
+                        enemy = new Mob(map, pathFromMob) {
+                            X = enemyCell.X,
+                            Y = enemyCell.Y,
+                            Sprite = content.Load<Texture2D>("mob_green"),
+                            Scale = 0.47059f,
+                            ArmorClass = 10,
+                            AttackBonus = 0,
+                            Damage = Global.Random.Next(4, 6),
+                            Health = 1,
+                            Name = "Green " + i
+                        };
+                        break;
+                    case 2:
+                        enemy = new Mob(map, pathFromMob) {
+                            X = enemyCell.X,
+                            Y = enemyCell.Y,
+                            Sprite = content.Load<Texture2D>("mob_gold"),
+                            Scale = 0.47059f,
+                            ArmorClass = 10,
+                            AttackBonus = 0,
+                            Damage = Global.Random.Next(2),
+                            Health = 15,
+                            Name = "Gold " + i
+                        };
+                        break;
+                    default:
+                        Console.WriteLine("Fehler");
+                        break;
+                }
                 mobs.Add(enemy);
 
             }

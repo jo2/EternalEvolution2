@@ -1,22 +1,22 @@
 ﻿using GameStateManagement;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
-namespace GameStateManagementSample.Screens
-{
-    class GameOverScreen : MenuScreen
-    {
+namespace GameStateManagementSample.Screens {
+    class GameOverScreen : MenuScreen {
         #region Fields
 
-        private bool otherScreensAreGone;
+        private static int[] mobsCount;
+        private static GameplayScreen gameplayScreen;
 
         #endregion Fields
 
         #region Initialization
-        
-        private GameOverScreen(ScreenManager screenManager) : base ("GAME OVER")
-        {
+
+        private GameOverScreen(ScreenManager screenManager) : base("GAME OVER") {
             MenuEntry respawnMenuEntry = new MenuEntry("Respawn");
             MenuEntry mainMenuMenuEntry = new MenuEntry("Main Menu");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
@@ -29,9 +29,11 @@ namespace GameStateManagementSample.Screens
             MenuEntries.Add(mainMenuMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
-        
-        public static void Load(ScreenManager screenManager, PlayerIndex? controllingPlayer)
-        {
+
+        public static void Load(ScreenManager screenManager, PlayerIndex? controllingPlayer, int[] lMobsCount, GameplayScreen gs) {
+            mobsCount = lMobsCount;
+            gameplayScreen = gs;
+
             foreach (GameScreen screen in screenManager.GetScreens())
                 screen.ExitScreen();
 
@@ -44,19 +46,35 @@ namespace GameStateManagementSample.Screens
 
         #region Handle Input
 
-        private void RespawnMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+        private void RespawnMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
+            /*gameplayScreen.player.Health = 50;
+            GameplayScreen g = new GameplayScreen(true) {
+                player = gameplayScreen.player,
+                maps = gameplayScreen.maps,
+                mobsPerMap = gameplayScreen.mobsPerMap,
+                currentMap = gameplayScreen.currentMap,
+                bodyHit = gameplayScreen.bodyHit,
+            };*/
+            for (int i = 0; i < mobsCount.Length; i++) {
+                Console.WriteLine(mobsCount[i]);
+            }
+
+            Console.WriteLine("maps in GameOver: " + gameplayScreen.maps);
+
+            GameplayScreen gs = new GameplayScreen(true) {
+                mobsCount = mobsCount,
+                maps = gameplayScreen.maps
+            };
+
+            Console.WriteLine("RESPAWN");
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, gs);
         }
 
-        private void MainMenuMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
+        private void MainMenuMenuEntrySelected(object sender, PlayerIndexEventArgs e) {
             ScreenManager.AddScreen(new MainMenuScreen(), e.PlayerIndex);
         }
 
-        protected override void OnCancel(PlayerIndex playerIndex)
-        {
+        protected override void OnCancel(PlayerIndex playerIndex) {
             const string message = "Are you sure you want to exit this sample?";
 
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
@@ -66,8 +84,7 @@ namespace GameStateManagementSample.Screens
             ScreenManager.AddScreen(confirmExitMessageBox, playerIndex);
         }
 
-        private void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
-        {
+        private void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e) {
             ScreenManager.Game.Exit();
         }
 
@@ -86,7 +103,7 @@ namespace GameStateManagementSample.Screens
                 ScreenManager.Game.ResetElapsedTime();
             }
         }*/
-        
+
         #endregion Update and Draw
     }
 }
