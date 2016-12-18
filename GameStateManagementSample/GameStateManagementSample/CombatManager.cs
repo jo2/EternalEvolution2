@@ -76,9 +76,19 @@ namespace GameStateManagementSample
                         Item random = new Item();
                         random.X = enemy.X;
                         random.Y = enemy.Y;
-                        random.AttackBonus = rnd.Next(0, 5);
-                        random.ArmorClass = rnd.Next(0, 5);
-                        random.Health = rnd.Next(0, 20);
+                        if (mobs.Last().Equals(enemy))
+                        {
+                            random.AttackBonus = rnd.Next(5, 15);
+                            random.ArmorClass = rnd.Next(5, 15);
+                            random.Health = rnd.Next(15, 50);
+                        }
+                        else
+                        {
+                            random.AttackBonus = rnd.Next(0, 5);
+                            random.ArmorClass = rnd.Next(0, 5);
+                            random.Health = rnd.Next(0, 20); 
+                        }
+
                         player.ArmorClass += random.ArmorClass;
                         player.AttackBonus += random.AttackBonus;
                         player.Health += random.Health;
