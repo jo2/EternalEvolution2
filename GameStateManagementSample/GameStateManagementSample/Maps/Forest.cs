@@ -64,17 +64,20 @@ namespace GameStateManagementSample.Maps {
         }
 
         public override string Update(GameTime gameTime) {
-            if (lastMap is DungeonNorth) {
-                spawnPoint = map.GetCell(cityExit.X, cityExit.Y + 1);
-            } else if (lastMap is DungeonEast) {
-                spawnPoint = map.GetCell(dungeonExit.X, dungeonExit.Y - 1);
-            }
             if (ComparePositions(player, cityExit) && player.hasMoved) {
                 return "city";
             } else if (ComparePositions(player, dungeonExit) && player.hasMoved) {
                 return "dungeonCentral";
             }
             return null;
+        }
+
+        public override void setSpawnpoint() {
+            if (lastMap.GetType() == typeof(City)) {
+                spawnPoint = map.GetCell(cityExit.X, cityExit.Y + 1);
+            } else if (lastMap.GetType() == typeof(DungeonCentral)) {
+                spawnPoint = map.GetCell(dungeonExit.X, dungeonExit.Y - 1);
+            }
         }
     }
 }

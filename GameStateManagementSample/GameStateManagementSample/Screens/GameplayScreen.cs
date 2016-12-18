@@ -125,43 +125,36 @@ namespace GameStateManagement {
             maps.TryGetValue("dungeonCentral", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for central: " + m.mobs);
             mobsPerMap.Add("dungeonCentral", m.mobs);
 
             maps.TryGetValue("dungeonNorth", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for north: " + m.mobs);
             mobsPerMap.Add("dungeonNorth", m.mobs);
 
             maps.TryGetValue("dungeonEast", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for east: " + m.mobs);
             mobsPerMap.Add("dungeonEast", m.mobs);
 
             maps.TryGetValue("dungeonSouth", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for south: " + m.mobs);
             mobsPerMap.Add("dungeonSouth", m.mobs);
 
             maps.TryGetValue("dungeonWest", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for west: " + m.mobs);
             mobsPerMap.Add("dungeonWest", m.mobs);
 
             maps.TryGetValue("forest", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for forest: " + m.mobs);
             mobsPerMap.Add("forest", m.mobs);
 
             maps.TryGetValue("city", out m);
             m.player = player;
             m.LoadContent();
-            Console.WriteLine("mobs for city: " + m.mobs);
             mobsPerMap.Add("city", m.mobs);
 
             maps.TryGetValue("city", out currentMap);
@@ -209,12 +202,12 @@ namespace GameStateManagement {
                 List<Mob> tempList = currentMap.mobs;
                 maps.TryGetValue(ret, out currentMap);
                 currentMap.lastMap = temp;
+                //setze SPawnpoint
+                currentMap.setSpawnpoint();
                 player.X = currentMap.spawnPoint.X;
                 player.Y = currentMap.spawnPoint.Y;
                 currentMap.player = player;
                 mobsPerMap.TryGetValue(ret, out currentMap.mobs);
-
-                Console.WriteLine("mobs: " + currentMap.mobs);
 
                 Global.GameState = GameStates.PlayerTurn;
                 Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);

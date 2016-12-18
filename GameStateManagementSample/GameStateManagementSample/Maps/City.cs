@@ -28,6 +28,8 @@ namespace GameStateManagementSample.Maps {
             exit = map.GetCell(1, 1);
             
             spawnPoint = map.GetCell(1, 2);
+
+            lastMap = this;
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
@@ -59,10 +61,13 @@ namespace GameStateManagementSample.Maps {
             mobs = new List<Mob>();
         }
 
-        public override string Update(GameTime gameTime) {
-            if (lastMap is DungeonNorth) {
+        public override void setSpawnpoint() {
+            if (lastMap.GetType() == typeof(Forest)) {
                 spawnPoint = map.GetCell(exit.X, exit.Y + 1);
             }
+        }
+
+        public override string Update(GameTime gameTime) {
             if (ComparePositions(player, exit) && player.hasMoved) {
                 return "forest";
             }

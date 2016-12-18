@@ -67,6 +67,10 @@ namespace GameStateManagementSample.Maps {
             return null;
         }
 
+        public override void setSpawnpoint() {
+            base.setSpawnpoint();
+        }
+
         public override void Draw(SpriteBatch spriteBatch) {
             // TODO: Add your drawing code here
             int sizeOfSprites = 64;

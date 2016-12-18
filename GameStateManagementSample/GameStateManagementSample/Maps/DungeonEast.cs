@@ -14,8 +14,6 @@ namespace GameStateManagementSample.Maps {
         private Texture2D doorSprite;
 
         public DungeonEast(ContentManager lContent) : base(lContent) {
-            //exit = new Cell(0, 0, true, true, false);
-
             wallSprite = content.Load<Texture2D>("wall");
             floorSprite = content.Load<Texture2D>("floor");
             doorSprite = content.Load<Texture2D>("door");
@@ -67,6 +65,10 @@ namespace GameStateManagementSample.Maps {
                 return "dungeonCentral";
             }
             return null;
+        }
+
+        public override void setSpawnpoint() {
+            base.setSpawnpoint();
         }
 
         public override void Draw(SpriteBatch spriteBatch) {

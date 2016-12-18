@@ -40,17 +40,6 @@ namespace GameStateManagementSample.Maps {
         }
 
         public override string Update(GameTime gameTime) {
-            if (lastMap is DungeonNorth) {
-                spawnPoint = map.GetCell(topExit.X, topExit.Y + 1);
-            } else if (lastMap is DungeonEast) {
-                spawnPoint = map.GetCell(rightExit.X - 1, rightExit.Y);
-            } else if (lastMap is DungeonSouth) {
-                spawnPoint = map.GetCell(bottomExit.X, bottomExit.Y - 1);
-            } else if (lastMap is DungeonWest) {
-                spawnPoint = map.GetCell(leftExit.X + 1, leftExit.Y);
-            } else if (lastMap is Forest) {
-                spawnPoint = map.GetCell(centerExit.X, centerExit.Y + 1);
-            }
             if (ComparePositions(player, topExit) && player.hasMoved) {
                 return "dungeonNorth";
             } else if (ComparePositions(player, rightExit) && player.hasMoved) {
@@ -63,6 +52,20 @@ namespace GameStateManagementSample.Maps {
                 return "forest";
             }
             return null;
+        }
+
+        public override void setSpawnpoint() {
+            if (lastMap.GetType() == typeof(DungeonNorth)) {
+                spawnPoint = map.GetCell(topExit.X, topExit.Y + 1);
+            } else if (lastMap.GetType() == typeof(DungeonEast)) {
+                spawnPoint = map.GetCell(rightExit.X - 1, rightExit.Y);
+            } else if (lastMap.GetType() == typeof(DungeonSouth)) {
+                spawnPoint = map.GetCell(bottomExit.X, bottomExit.Y - 1);
+            } else if (lastMap.GetType() == typeof(DungeonWest)) {
+                spawnPoint = map.GetCell(leftExit.X + 1, leftExit.Y);
+            } else if (lastMap.GetType() == typeof(Forest)) {
+                spawnPoint = map.GetCell(centerExit.X, centerExit.Y + 1);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch) {

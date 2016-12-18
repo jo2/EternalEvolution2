@@ -21,7 +21,14 @@ namespace GameStateManagementSample.Maps {
         }
 
         public virtual void LoadContent() {
-            AddAggressiveEnemies(10);
+            AddAggressiveEnemies(0);
+            //AddAggressiveEnemies(10);
+        }
+
+        public virtual void setSpawnpoint() {
+            if (lastMap != null) {
+                Console.WriteLine("lastmap: " + lastMap.GetType());
+            }
         }
 
         public virtual string Update(GameTime gameTime) {
