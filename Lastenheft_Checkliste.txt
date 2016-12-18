@@ -1,36 +1,38 @@
+Vorherige Version: https://github.com/spejss/EternalEvolution
+
 *Die Spielfigur ist mittels Tastatur und/oder Maus zu bewegen
 	- Kollisionen sind abzufangen
 
-*Eine Karte (eine Ebene eines Dungeons) hat min. 5 Räume
+*Eine Karte (eine Ebene eines Dungeons) hat min. 5 RÃ¤ume
 
-*Min. drei Karten sind durch Übergange/Gänge miteinander verbunden
+*Min. drei Karten sind durch Ãœbergange/GÃ¤nge miteinander verbunden
 
-Min. 3 verschiedene Gegner-Typen (Aussehen, Lebenspunkte, Geschwindigkeit, etc.) sind in den Räumen und bewegen sich eigenständig
+Min. 3 verschiedene Gegner-Typen (Aussehen, Lebenspunkte, Geschwindigkeit, etc.) sind in den RÃ¤umen und bewegen sich eigenstÃ¤ndig
 	- Kollisionen sind abzufangen
 
-In den Räumen sind Nah- und Fernkampfwaffen vorhanden (können vom Spieler eingesammelt werden)
+In den RÃ¤umen sind Nah- und Fernkampfwaffen vorhanden (kÃ¶nnen vom Spieler eingesammelt werden)
 
-*Gegner können angegriffen werden und der Spieler wird von Gegnern angegriffen
+*Gegner kÃ¶nnen angegriffen werden und der Spieler wird von Gegnern angegriffen
 
-Der Angriff wird visuell dargestellt (Schadenspunkte, Healthbar, etc.)
+*Der Angriff wird visuell dargestellt (Schadenspunkte, Healthbar, etc.)
 
 Gegner ohne Lebenspunkte werden aus dem Spiel entfernt
-	- Ein besiegter Gegner hinterlässt Geld(Gold) und/oder andere Gegenstände
-	- Ein besiegter Gegner steigert die Erfahrungspunkte eines Spielers
+	- Ein besiegter Gegner hinterlÃ¤sst Geld(Gold) und/oder andere GegenstÃ¤nde
+	- **Ein besiegter Gegner steigert die Erfahrungspunkte eines Spielers
 
 *Verliert der Spieler alle Lebenspunkte, ist das Spiel beendet
 
 Ein besonderer Gegenstand ist auf der untersten Ebene zu finden
 
-Spiel-Abbruchbedigungen müssen festgestellt werden (Spiel wurde gewonnen, Spiel wurde verloren) und anschließend wird das Spiel beendet
-	- Beendigung des Spiels bedeutet, dass das Spiel ins Menü zurückkehrt
+Spiel-Abbruchbedigungen mÃ¼ssen festgestellt werden (Spiel wurde gewonnen, Spiel wurde verloren) und anschlieÃŸend wird das Spiel beendet
+	- Beendigung des Spiels bedeutet, dass das Spiel ins MenÃ¼ zurÃ¼ckkehrt
 
-Eine GUI-Anzeige muss relevante Spielinformationen anzeigen
+**Eine GUI-Anzeige muss relevante Spielinformationen anzeigen
 	- Lebenspunkte, Waffe(n), etc.
 
-*Gegenstände/Monster werden zufällig auf der Karte verteilt
+*GegenstÃ¤nde/Monster werden zufÃ¤llig auf der Karte verteilt
 
 *Sound-Effekte
 
-*Ein Menüsystem muss vorhanden sein
+*Ein MenÃ¼system muss vorhanden sein
 	- GameStateManagement Sample
