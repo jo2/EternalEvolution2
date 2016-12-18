@@ -71,6 +71,17 @@ namespace GameStateManagementSample
                         // When an enemies health dropped below 0 they died
                         // Remove that enemy from the game
                         player.Experience = player.Experience + enemy.ExpReward;
+
+                        Random rnd = new Random();
+                        Item random = new Item();
+                        random.X = enemy.X;
+                        random.Y = enemy.Y;
+                        random.AttackBonus = rnd.Next(0, 5);
+                        random.ArmorClass = rnd.Next(0, 5);
+                        random.Health = rnd.Next(0, 20);
+                        player.ArmorClass += random.ArmorClass;
+                        player.AttackBonus += random.AttackBonus;
+                        player.Health += random.Health;
                         mobs.Remove(enemy);
                     }
                     // Later we'll want to display this kill message in the UI
@@ -84,11 +95,6 @@ namespace GameStateManagementSample
                 Debug.WriteLine("{0} missed {1}", attacker.Name, defender.Name);
             }
 
-            //spriteBatch.Begin();
-
-            //spriteBatch.DrawString(gameFont, "Attack", new Vector2(500, 500), Color.Azure);
-
-            //spriteBatch.End();
         }
 
         // Helper method which returns the figure at a certain map cell

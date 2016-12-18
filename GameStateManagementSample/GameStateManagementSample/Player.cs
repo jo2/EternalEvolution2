@@ -14,6 +14,8 @@ namespace GameStateManagementSample
 
         public int Level { get; set; }
 
+        public LinkedList<Vector2> checkpoints = new LinkedList<Vector2>();
+
         public void Draw(SpriteBatch spriteBatch)
         {
             float multiplier = Scale * Sprite.Width;
