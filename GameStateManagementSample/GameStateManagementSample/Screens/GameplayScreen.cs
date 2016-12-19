@@ -163,8 +163,7 @@ namespace GameStateManagement {
             loaded = false;
 
             Global.GameState = GameStates.PlayerTurn;
-            Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
-
+            Global.CombatManager = new CombatManager(player, mobs, bodyHit, content);
         }
 
         /// <summary>
@@ -185,6 +184,28 @@ namespace GameStateManagement {
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen) {
             base.Update(gameTime, otherScreenHasFocus, false);
+
+  
+
+            if(player.Level > 0)
+            {
+                if((player.Experience >= player.Level * 100))
+                {
+                    player.Level++;
+                    player.Experience -= (player.Level-1) * 100;
+                    player.Health += 5;
+                }
+            }
+            if(player.Level == 0)
+            {
+                if ((player.Experience >= 100) && (player.Level == 0))
+                {
+                    player.Level++;
+                    player.Experience = player.Experience - 100;
+                    player.Health += 5;
+                } 
+            }
+
             if (player.Health <= 0) {
                 mobsCount = new int[7];
                 int i = 0;
@@ -267,7 +288,14 @@ namespace GameStateManagement {
 
             player.Draw(spriteBatch);
 
-            //Console.WriteLine("map to draw: " + currentMap.GetType());
+            spriteBatch.DrawString(gameFont, "HP: " + player.Health, new Vector2(0, 0), Color.Red);
+            spriteBatch.DrawString(gameFont, "Armor: " + player.ArmorClass, new Vector2(0, 100), Color.Green);
+            spriteBatch.DrawString(gameFont, "Attack: " + player.AttackBonus, new Vector2(0, 200), Color.Purple);
+            spriteBatch.DrawString(gameFont, "Experience: " + player.Experience, new Vector2(0, 300), Color.Purple);
+
+            spriteBatch.DrawString(gameFont, "Level: " + player.Level, new Vector2(0, 400), Color.Purple);
+
+            spriteBatch.End();
 
             currentMap.Draw(spriteBatch);
 

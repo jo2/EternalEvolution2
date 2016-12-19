@@ -72,3 +72,43 @@ C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalE
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.csprojResolveAssemblyReference.cache
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.exe
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.pdb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\backgroundMusic.wma
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\backgroundMusic.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\Body_Hit_32.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\background.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\blank.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\floor.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\gamefont.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\gradient.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\hound.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\menufont.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\player.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\wall.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\white.xnb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\GameStateManagementSample.exe
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\GameStateManagementSample.pdb
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\RogueSharp.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\RogueSharp.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.csprojResolveAssemblyReference.cache

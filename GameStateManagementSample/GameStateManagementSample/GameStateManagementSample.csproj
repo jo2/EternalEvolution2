@@ -43,6 +43,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Maps\City.cs" />
     <Compile Include="Maps\DungeonCentral.cs" />
     <Compile Include="Maps\DungeonEast.cs" />
@@ -80,6 +81,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
