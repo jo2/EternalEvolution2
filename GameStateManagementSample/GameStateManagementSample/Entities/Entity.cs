@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using RogueSharp.DiceNotation;
+using System.Collections.Generic;
 
 namespace GameStateManagementSample
 {
@@ -14,5 +15,6 @@ namespace GameStateManagementSample
         public int Damage { get; set; }
         public int Health { get; set; }
         public string Name { get; set; }
+        public LinkedList<Item> Equipment = new LinkedList<Item>();
     }
 }

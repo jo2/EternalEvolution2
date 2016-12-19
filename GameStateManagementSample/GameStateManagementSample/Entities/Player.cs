@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RogueSharp;
 using System;
+using System.Collections.Generic;
 
 namespace GameStateManagementSample
 {
@@ -10,6 +11,9 @@ namespace GameStateManagementSample
     {
         public bool hasMoved;
         public float Scale { get; set; }
+        public int Experience { get; set; }
+        public int Level { get; set; }
+        public LinkedList<Vector2> checkpoints = new LinkedList<Vector2>();
 
         public void Draw(SpriteBatch spriteBatch)
         {

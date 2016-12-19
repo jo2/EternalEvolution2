@@ -77,10 +77,10 @@ namespace GameStateManagementSample.Maps {
                 var pathFromMob = new PathToPlayer(player, map, content.Load<Texture2D>("white"));
                 pathFromMob.CreateFrom(enemyCell.X, enemyCell.Y);
                 int rnd = Global.Random.Next(2);
-                var enemy = new Mob(map, pathFromMob);
+                var enemy = new Mob(map, pathFromMob, 50);
                 switch (rnd) {
                     case 0:
-                        enemy = new Mob(map, pathFromMob) {
+                        enemy = new Mob(map, pathFromMob, 50) {
                             X = enemyCell.X,
                             Y = enemyCell.Y,
                             Sprite = content.Load<Texture2D>("hound"),
@@ -93,7 +93,7 @@ namespace GameStateManagementSample.Maps {
                         };
                         break;
                     case 1:
-                        enemy = new Mob(map, pathFromMob) {
+                        enemy = new Mob(map, pathFromMob, 50) {
                             X = enemyCell.X,
                             Y = enemyCell.Y,
                             Sprite = content.Load<Texture2D>("mob_green"),
@@ -106,7 +106,7 @@ namespace GameStateManagementSample.Maps {
                         };
                         break;
                     case 2:
-                        enemy = new Mob(map, pathFromMob) {
+                        enemy = new Mob(map, pathFromMob, 50) {
                             X = enemyCell.X,
                             Y = enemyCell.Y,
                             Sprite = content.Load<Texture2D>("mob_gold"),

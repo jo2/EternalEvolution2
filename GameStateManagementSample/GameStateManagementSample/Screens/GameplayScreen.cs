@@ -163,7 +163,7 @@ namespace GameStateManagement {
             loaded = false;
 
             Global.GameState = GameStates.PlayerTurn;
-            Global.CombatManager = new CombatManager(player, mobs, bodyHit, content);
+            Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit, content);
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace GameStateManagement {
                 mobsPerMap.TryGetValue(ret, out currentMap.mobs);
 
                 Global.GameState = GameStates.PlayerTurn;
-                Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
+                Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit, content);
 
                 Draw(gameTime);
             }
@@ -294,8 +294,6 @@ namespace GameStateManagement {
             spriteBatch.DrawString(gameFont, "Experience: " + player.Experience, new Vector2(0, 300), Color.Purple);
 
             spriteBatch.DrawString(gameFont, "Level: " + player.Level, new Vector2(0, 400), Color.Purple);
-
-            spriteBatch.End();
 
             currentMap.Draw(spriteBatch);
 
