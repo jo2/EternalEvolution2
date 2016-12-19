@@ -83,9 +83,9 @@ namespace GameStateManagement
 
             //backgroundMusic = Song.FromUri("backgroundMusic", new Uri("Content/backgroundMusic", UriKind.Relative));
             //System.Diagnostics.Process.Start("C:\\Users\\Johannes Teklote\\Documents\\Uni Projekte\\Seminar Computerspiele\\Sounds\\backgroundMusic.mp3");
-            backgroundMusic = Content.Load<Song>("backgroundMusic");
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(backgroundMusic);
+            //backgroundMusic = Content.Load<Song>("backgroundMusic");
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(backgroundMusic);
         }
 
         #endregion Initialization

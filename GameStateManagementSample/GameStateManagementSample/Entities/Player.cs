@@ -8,6 +8,7 @@ namespace GameStateManagementSample
 {
     public class Player : Entity
     {
+        public bool hasMoved;
         public float Scale { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -32,6 +33,7 @@ namespace GameStateManagementSample
                     {
                         Global.CombatManager.Attack(this, enemy);
                     }
+                    hasMoved = true;
                     return true;
                 }
             }
@@ -49,6 +51,7 @@ namespace GameStateManagementSample
                     {
                         Global.CombatManager.Attack(this, enemy);
                     }
+                    hasMoved = true;
                     return true;
                 }
             }
@@ -66,6 +69,7 @@ namespace GameStateManagementSample
                     {
                         Global.CombatManager.Attack(this, enemy);
                     }
+                    hasMoved = true;
                     return true;
                 }
             }
@@ -83,6 +87,7 @@ namespace GameStateManagementSample
                     {
                         Global.CombatManager.Attack(this, enemy);
                     }
+                    hasMoved = true;
                     return true;
                 }
             }

@@ -24,36 +24,40 @@ using System.Collections.Generic;
 using RogueSharp.DiceNotation;
 using GameStateManagementSample.Screens;
 using Microsoft.Xna.Framework.Audio;
+using GameStateManagementSample.Maps;
+using System.Diagnostics;
+using System.Xml.Serialization;
+using System.IO;
 
 #endregion Using Statements
 
-namespace GameStateManagement
-{
+namespace GameStateManagement {
     /// <summary>
     /// This screen implements the actual game logic. It is just a
     /// placeholder to get the idea across: you'll probably want to
     /// put some more interesting gameplay in here!
     /// </summary>
-    internal class GameplayScreen : GameScreen
-    {
+    internal class GameplayScreen : GameScreen {
         #region Fields
 
-        private ContentManager content;
-        private SpriteFont gameFont;
+        public readonly int mapWidth = 50;
+        public readonly int mapHeight = 30;
 
-        private Player player;
-        private List<Mob> mobs;
-        private Mob mob;
+        public ContentManager content;
+        public SpriteFont gameFont;
 
-        private SpriteBatch spriteBatch;
+        public Player player;
 
-        private Texture2D wallSprite;
-        private Texture2D floorSprite;
-        private SoundEffect bodyHit;
+        public int[] mobsCount;
 
-        private IMap map;
+        public IDictionary<string, EternalEvolutionMap> maps;
+        public IDictionary<string, List<Mob>> mobsPerMap;
+        public EternalEvolutionMap currentMap;
 
-        private InputState inputState;
+        public SpriteBatch spriteBatch;
+
+        public SoundEffect bodyHit;
+        private bool loaded;
 
         #endregion Fields
 
@@ -62,17 +66,16 @@ namespace GameStateManagement
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameplayScreen()
-        {
+        public GameplayScreen(bool lLoaded) {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            loaded = lLoaded;
         }
 
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
-        public override void LoadContent()
-        {
+        public override void LoadContent() {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
@@ -90,17 +93,27 @@ namespace GameStateManagement
 
             spriteBatch = ScreenManager.SpriteBatch;
 
-            wallSprite = content.Load<Texture2D>("wall");
-            floorSprite = content.Load<Texture2D>("floor");
             bodyHit = content.Load<SoundEffect>("Body_Hit_32");
 
-            IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(50, 30, 100, 7, 3);
-            map = Map.Create(mapCreationStrategy);
+            if (!loaded) {
+                maps = new Dictionary<string, EternalEvolutionMap>();
+                maps.Add("dungeonCentral", new DungeonCentral(content));
+                maps.Add("dungeonNorth", new DungeonNorth(content));
+                maps.Add("dungeonEast", new DungeonEast(content));
+                maps.Add("dungeonSouth", new DungeonSouth(content));
+                maps.Add("dungeonWest", new DungeonWest(content));
+                maps.Add("forest", new Forest(content));
+                maps.Add("city", new City(content));
+            } else {
+                EternalEvolutionMap map;
+                foreach (string s in maps.Keys) {
+                    maps.TryGetValue(s, out map);
+                    map.LoadSprites();
+                }
+            }
 
-            wallSprite = content.Load<Texture2D>("wall");
-            Cell startingCell = GetRandomEmptyCell();
-            player = new Player
-            {
+            Cell startingCell = new Cell(2, 3, true, true, true);
+            player = new Player {
                 X = startingCell.X,
                 Y = startingCell.Y,
                 Scale = 0.25f,
@@ -111,27 +124,53 @@ namespace GameStateManagement
                 Health = 50,
                 Name = "Mr. Rouge"
             };
+
+            EternalEvolutionMap m;
+            mobsPerMap = new Dictionary<string, List<Mob>>();
+            if (loaded) {
+                int i = 0;
+                foreach (string s in maps.Keys) {
+                    Console.WriteLine("mobs in " + s + " after Spawn: " + mobsCount[i]);
+                    maps.TryGetValue(s, out m);
+                    m.player = player;
+                    m.LoadContent(mobsCount[i]);
+                    mobsPerMap.Add(s, m.mobs);
+                    i++;
+                }
+            } else {
+                foreach (string s in maps.Keys) {
+                    maps.TryGetValue(s, out m);
+                    m.player = player;
+                    m.LoadContent(10);
+                    mobsPerMap.Add(s, m.mobs);
+                }
+            }
+
+            maps.TryGetValue("city", out currentMap);
+            currentMap.player = player;
+
+            if (currentMap.GetType() == typeof(City)) {
+                foreach (Cell cell in currentMap.map.GetAllCells()) {
+                    currentMap.map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, true);
+                }
+            } else {
+                foreach (Cell cell in currentMap.map.GetAllCells()) {
+                    currentMap.map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, false);
+                }
+            }
+
             UpdatePlayerFieldOfView();
-            startingCell = GetRandomEmptyCell();
-            var pathFromAggressiveEnemy = new PathToPlayer(player, map, content.Load<Texture2D>("white"));
-            pathFromAggressiveEnemy.CreateFrom(startingCell.X, startingCell.Y);
-            /*mob = new Mob(map, pathFromAggressiveEnemy)
-            {
-                X = startingCell.X,
-                Y = startingCell.Y,
-                Scale = 0.25f,
-                Sprite = content.Load<Texture2D>("hound")
-            };*/
-            this.AddAggressiveEnemies(10);
+            loaded = false;
+
             Global.GameState = GameStates.PlayerTurn;
-            Global.CombatManager = new CombatManager(player, mobs, bodyHit);
+            Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
+
         }
 
         /// <summary>
         /// Unload graphics content used by the game.
         /// </summary>
-        public override void UnloadContent()
-        {
+        public override void UnloadContent() {
             content.Unload();
         }
 
@@ -144,14 +183,39 @@ namespace GameStateManagement
         /// property, so the game will stop updating when the pause menu is active,
         /// or if you tab away to a different application.
         /// </summary>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-        {
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen) {
             base.Update(gameTime, otherScreenHasFocus, false);
-            if (player.Health <= 0)
-            {
+            if (player.Health <= 0) {
+                mobsCount = new int[7];
+                int i = 0;
+                List<Mob> list;
+                foreach (string s in mobsPerMap.Keys) {
+                    mobsPerMap.TryGetValue(s, out list);
+                    mobsCount[i] = list.Count;
+                    i++;
+                }
                 Global.GameState = GameStates.GameOver;
+                GameOverScreen.Load(ScreenManager, PlayerIndex.One, mobsCount, this);
+            }
+            string ret = currentMap.Update(gameTime);
+            if (ret != null) {
+                //Map wechseln
+                Debug.WriteLine("change map to: " + ret);
+                EternalEvolutionMap temp = currentMap;
+                List<Mob> tempList = currentMap.mobs;
+                maps.TryGetValue(ret, out currentMap);
+                currentMap.lastMap = temp;
+                //setze SPawnpoint
+                currentMap.setSpawnpoint();
+                player.X = currentMap.spawnPoint.X;
+                player.Y = currentMap.spawnPoint.Y;
+                currentMap.player = player;
+                mobsPerMap.TryGetValue(ret, out currentMap.mobs);
 
-                GameOverScreen.Load(ScreenManager, PlayerIndex.One);
+                Global.GameState = GameStates.PlayerTurn;
+                Global.CombatManager = new CombatManager(player, currentMap.mobs, bodyHit);
+
+                Draw(gameTime);
             }
         }
 
@@ -159,50 +223,32 @@ namespace GameStateManagement
         /// Lets the game respond to player input. Unlike the Update method,
         /// this will only be called when the gameplay screen is active.
         /// </summary>
-        public override void HandleInput(InputState input)
-        {
+        public override void HandleInput(InputState input) {
             if (input == null)
                 throw new ArgumentNullException("input");
 
-            // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = (int) ControllingPlayer.Value;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
-            // The game pauses either if the user presses the pause button, or if
-            // they unplug the active gamepad. This requires us to keep track of
-            // whether a gamepad was ever plugged in, because we don't want to pause
-            // on PC if they are playing with a keyboard and have no gamepad at all!
             bool gamePadDisconnected = !gamePadState.IsConnected && input.GamePadWasConnected[playerIndex];
 
-            if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
-            {
+            if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected) {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-            }
-            else if (input.IsD(PlayerIndex.One))
-            {
-                if (Global.GameState == GameStates.PlayerTurn)
-                {
+            } else if (input.IsD(PlayerIndex.One)) {
+                if (Global.GameState == GameStates.PlayerTurn) {
                     Global.GameState = GameStates.Debugging;
-                }
-                else if (Global.GameState == GameStates.Debugging)
-                {
+                } else if (Global.GameState == GameStates.Debugging) {
                     Global.GameState = GameStates.PlayerTurn;
                 }
-            }
-            else
-            {
-                if (Global.GameState == GameStates.PlayerTurn && player.HandleInput(input, map))
-                {
+            } else {
+                if (Global.GameState == GameStates.PlayerTurn && player.HandleInput(input, currentMap.map)) {
                     UpdatePlayerFieldOfView();
                     Global.GameState = GameStates.EnemyTurn;
                 }
-                if (Global.GameState == GameStates.EnemyTurn)
-                {
-                    //mob.Update();
-                    foreach (var enemy in mobs)
-                    {
+                if (Global.GameState == GameStates.EnemyTurn) {
+                    foreach (var enemy in currentMap.mobs) {
                         enemy.Update();
                     }
                     Global.GameState = GameStates.PlayerTurn;
@@ -213,102 +259,31 @@ namespace GameStateManagement
         /// <summary>
         /// Draws the gameplay screen.
         /// </summary>
-        public override void Draw(GameTime gameTime)
-        {
-
+        public override void Draw(GameTime gameTime) {
+            base.Draw(gameTime);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
-            int sizeOfSprites = 64;
-            float scale = .25f;
-            foreach (Cell cell in map.GetAllCells())
-            {
-                var position = new Vector2(cell.X * sizeOfSprites * scale, cell.Y * sizeOfSprites * scale);
-                if (!cell.IsExplored && Global.GameState != GameStates.Debugging)
-                {
-                    continue;
-                }
-                Color tint = Color.White;
-                if (!cell.IsInFov && Global.GameState != GameStates.Debugging)
-                {
-                    tint = Color.Gray;
-                }
-                if (cell.IsWalkable)
-                {
-                    spriteBatch.Draw(floorSprite, position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 0.8f);
-                }
-                else
-                {
-                    spriteBatch.Draw(wallSprite, position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 0.8f);
-                }
-            }
-
             player.Draw(spriteBatch);
-            foreach (var enemy in mobs)
-            {
-                if (Global.GameState == GameStates.Debugging || map.IsInFov(enemy.X, enemy.Y))
-                {
-                    enemy.Draw(spriteBatch);
-                }
-            }
+
+            //Console.WriteLine("map to draw: " + currentMap.GetType());
+
+            currentMap.Draw(spriteBatch);
 
             spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
         #endregion Update and Draw
 
         #region Custom Methods
 
-        private Cell GetRandomEmptyCell()
-        {
-            while (true)
-            {
-                int x = Global.Random.Next(49);
-                int y = Global.Random.Next(29);
-                if (map.IsWalkable(x, y))
-                {
-                    return map.GetCell(x, y);
+        private void UpdatePlayerFieldOfView() {
+            currentMap.map.ComputeFov(player.X, player.Y, 30, true);
+            foreach (Cell cell in currentMap.map.GetAllCells()) {
+                if (currentMap.map.IsInFov(cell.X, cell.Y)) {
+                    currentMap.map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, true);
                 }
-            }
-        }
-
-        private void UpdatePlayerFieldOfView()
-        {
-            map.ComputeFov(player.X, player.Y, 30, true);
-            foreach (Cell cell in map.GetAllCells())
-            {
-                if (map.IsInFov(cell.X, cell.Y))
-                {
-                    map.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, true);
-                }
-            }
-        }
-
-        private void AddAggressiveEnemies(int numberOfEnemies)
-        {
-            mobs = new List<Mob>();
-            for (int i = 0; i < numberOfEnemies; i++)
-            {
-                Cell enemyCell = GetRandomEmptyCell();
-                var pathFromMob = new PathToPlayer(player, map, content.Load<Texture2D>("white"));
-                pathFromMob.CreateFrom(enemyCell.X, enemyCell.Y);
-                var enemy = new Mob(map, pathFromMob)
-                {
-                    X = enemyCell.X,
-                    Y = enemyCell.Y,
-                    Sprite = content.Load<Texture2D>("hound"),
-                    Scale = 0.25f,
-                    ArmorClass = 10,
-                    AttackBonus = 0,
-                    Damage = Global.Random.Next(5),
-                    Health = 10,
-                    Name = "Hunting Hound " + i
-                };
-                mobs.Add(enemy);
-
             }
         }
 

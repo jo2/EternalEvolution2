@@ -7,49 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStateManagementSample
-{
-    public class PathToPlayer
-    {
+namespace GameStateManagementSample {
+    public class PathToPlayer {
         private readonly Player player;
         private readonly IMap map;
         private readonly Texture2D sprite;
         private readonly PathFinder pathFinder;
         private IEnumerable<Cell> cells;
 
-        public PathToPlayer(Player lPlayer, IMap lMap, Texture2D lSprite)
-        {
+        public PathToPlayer(Player lPlayer, IMap lMap, Texture2D lSprite) {
             player = lPlayer;
             map = lMap;
             sprite = lSprite;
             pathFinder = new PathFinder(lMap);
         }
-        public Cell FirstCell
-        {
-            get
-            {
+        public Cell FirstCell {
+            get {
                 return cells.First();
             }
         }
-        public void CreateFrom(int x, int y)
-        {
-            try
-            {
-                cells = (IEnumerable<Cell>)pathFinder.ShortestPath(map.GetCell(x, y), map.GetCell(player.X, player.Y)).Steps;
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine("Fehler aufgetreten: " + e.Message);
+        public void CreateFrom(int x, int y) {
+            try {
+                cells = (IEnumerable<Cell>) pathFinder.ShortestPath(map.GetCell(x, y), map.GetCell(player.X, player.Y)).Steps;
+            }catch (PathNotFoundException e) {
+            } catch (ArgumentOutOfRangeException e) {
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (cells != null && Global.GameState == GameStates.Debugging)
-            {
-                foreach (Cell cell in cells)
-                {
-                    if (cell != null)
-                    {
+        public void Draw(SpriteBatch spriteBatch) {
+            if (cells != null && Global.GameState == GameStates.Debugging) {
+                foreach (Cell cell in cells) {
+                    if (cell != null) {
                         float scale = .25f;
                         float multiplier = .25f * sprite.Width;
                         spriteBatch.Draw(sprite, new Vector2(cell.X * multiplier, cell.Y * multiplier),

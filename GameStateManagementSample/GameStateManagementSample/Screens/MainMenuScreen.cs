@@ -56,7 +56,7 @@ namespace GameStateManagement
         private void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+                               new GameplayScreen(false));
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using RogueSharp.Random;
+﻿using Microsoft.Xna.Framework.Content;
+using RogueSharp.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
