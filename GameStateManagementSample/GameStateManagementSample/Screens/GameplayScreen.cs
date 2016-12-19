@@ -45,7 +45,7 @@ namespace GameStateManagement
         private List<Mob> mobs;
         private Mob mob;
 
-        private SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
 
         private Texture2D wallSprite;
         private Texture2D floorSprite;
@@ -124,7 +124,7 @@ namespace GameStateManagement
             };*/
             this.AddAggressiveEnemies(10);
             Global.GameState = GameStates.PlayerTurn;
-            Global.CombatManager = new CombatManager(player, mobs, bodyHit);
+            Global.CombatManager = new CombatManager(player, mobs, bodyHit, content);
         }
 
         /// <summary>

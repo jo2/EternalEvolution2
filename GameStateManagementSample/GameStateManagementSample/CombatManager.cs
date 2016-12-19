@@ -25,13 +25,16 @@ namespace GameStateManagementSample
 
         private SpriteBatch spriteBatch;
 
+        private Texture2D currentLoot;
+
         // When we construct the CombatManager class we want to pass in references
         // to the player and the list of enemies.
-        public CombatManager(Player lPlayer, List<Mob> lMobs, SoundEffect lBodyHit)
+        public CombatManager(Player lPlayer, List<Mob> lMobs, SoundEffect lBodyHit, ContentManager lContent)
         {
             player = lPlayer;
             mobs = lMobs;
             bodyHit = lBodyHit;
+            Content = lContent;
         }
 
         // Use this method to resolve attacks between Figures
@@ -88,6 +91,8 @@ namespace GameStateManagementSample
                             random.ArmorClass = rnd.Next(0, 5);
                             random.Health = rnd.Next(0, 20); 
                         }
+
+                       
 
                         player.ArmorClass += random.ArmorClass;
                         player.AttackBonus += random.AttackBonus;

@@ -15,5 +15,6 @@ namespace GameStateManagementSample
         public int Health { get; set; }
         public string Name { get; set; }
         public LinkedList<Item> Equipment = new LinkedList<Item>();
+
     }
 }
