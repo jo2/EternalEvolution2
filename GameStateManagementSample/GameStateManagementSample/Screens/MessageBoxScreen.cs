@@ -81,7 +81,7 @@ namespace GameStateManagement
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            gradientTexture = content.Load<Texture2D>("gradient");
+            gradientTexture = content.Load<Texture2D>("ee_gradient");
         }
 
         #endregion Initialization

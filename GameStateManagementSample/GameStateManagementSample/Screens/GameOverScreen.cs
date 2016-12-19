@@ -37,8 +37,10 @@ namespace GameStateManagementSample.Screens {
             foreach (GameScreen screen in screenManager.GetScreens())
                 screen.ExitScreen();
 
+            BackgroundScreen bs = new BackgroundScreen();
             GameOverScreen gameOverScreen = new GameOverScreen(screenManager);
 
+            screenManager.AddScreen(bs, controllingPlayer);
             screenManager.AddScreen(gameOverScreen, controllingPlayer);
         }
 
@@ -58,8 +60,6 @@ namespace GameStateManagementSample.Screens {
             for (int i = 0; i < mobsCount.Length; i++) {
                 Console.WriteLine(mobsCount[i]);
             }
-
-            Console.WriteLine("maps in GameOver: " + gameplayScreen.maps);
 
             GameplayScreen gs = new GameplayScreen(true) {
                 mobsCount = mobsCount,
