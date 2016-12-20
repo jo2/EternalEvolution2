@@ -87,9 +87,16 @@ namespace GameStateManagementSample
                         }
                         else
                         {
-                            random.AttackBonus = rnd.Next(0, 5);
-                            random.ArmorClass = rnd.Next(0, 5);
                             random.Health = rnd.Next(0, 20); 
+                            if(random.Health > 0)
+                            {
+                                random.AttackBonus = 0;
+                                random.ArmorClass = 0;
+                            }else
+                            {
+                                random.AttackBonus = rnd.Next(0, 5);
+                                random.ArmorClass = rnd.Next(0, 5);
+                            }
                         }
 
                        
