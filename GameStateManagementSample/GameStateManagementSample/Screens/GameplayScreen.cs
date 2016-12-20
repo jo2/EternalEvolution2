@@ -194,6 +194,7 @@ namespace GameStateManagement {
                     player.Level++;
                     player.Experience -= (player.Level-1) * 100;
                     player.Health += 5;
+                    player.Log = "You have advanced to level " + player.Level;
                 }
             }
             if(player.Level == 0)
@@ -294,6 +295,8 @@ namespace GameStateManagement {
             spriteBatch.DrawString(gameFont, "Experience: " + player.Experience, new Vector2(0, 300), Color.Purple);
 
             spriteBatch.DrawString(gameFont, "Level: " + player.Level, new Vector2(0, 400), Color.Purple);
+
+            spriteBatch.DrawString(gameFont, "Log: " + player.Log, new Vector2(0, 450), Color.Purple);
 
             currentMap.Draw(spriteBatch);
 

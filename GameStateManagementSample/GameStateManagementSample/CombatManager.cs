@@ -66,6 +66,7 @@ namespace GameStateManagementSample
                 // Write a combat message to the debug log.
                 // Later we'll add this to the game UI
                 Debug.WriteLine("{0} hit {1} for {2} and he has {3} health remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                player.Log = String.Format("{0} hit {1} for {2} and he has {3} health remaining.", attacker.Name, defender.Name, damage, defender.Health);
                 if (defender.Health <= 0)
                 {
                     if (defender is Mob)
@@ -106,8 +107,9 @@ namespace GameStateManagementSample
                             else
                             {
                                 random.AttackBonus = rnd.Next(0, 5);
-                                random.ArmorClass = rnd.Next(0, 5)
+                                random.ArmorClass = rnd.Next(0, 5);
                             }
+                      
                         }
 
                        

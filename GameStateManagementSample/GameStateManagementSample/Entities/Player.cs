@@ -14,6 +14,7 @@ namespace GameStateManagementSample
         public int Experience { get; set; }
         public int Level { get; set; }
         public LinkedList<Vector2> checkpoints = new LinkedList<Vector2>();
+        public string Log = "";
 
         public void Draw(SpriteBatch spriteBatch)
         {
