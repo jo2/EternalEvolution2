@@ -87,15 +87,26 @@ namespace GameStateManagementSample
                         }
                         else
                         {
-                            random.Health = rnd.Next(0, 20); 
-                            if(random.Health > 0)
+                            int shouldAddHP = rnd.Next(0, 1);
+                            if (shouldAddHP == 1)
                             {
-                                random.AttackBonus = 0;
-                                random.ArmorClass = 0;
-                            }else
+                                random.Health = rnd.Next(0, 20);
+                                if (random.Health > 0)
+                                {
+                                    random.AttackBonus = 0;
+                                    random.ArmorClass = 0;
+                                }
+                                else
+                                {
+                                    random.AttackBonus = rnd.Next(0, 5);
+                                    random.ArmorClass = rnd.Next(0, 5);
+                                }
+
+                            }
+                            else
                             {
                                 random.AttackBonus = rnd.Next(0, 5);
-                                random.ArmorClass = rnd.Next(0, 5);
+                                random.ArmorClass = rnd.Next(0, 5)
                             }
                         }
 
