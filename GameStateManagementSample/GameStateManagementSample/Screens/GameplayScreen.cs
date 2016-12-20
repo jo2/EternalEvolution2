@@ -194,7 +194,7 @@ namespace GameStateManagement {
                     player.Level++;
                     player.Experience -= (player.Level-1) * 100;
                     player.Health += 5;
-                    player.Log = "You have advanced to level " + player.Level;
+                    player.Log = "You have advanced to level  " + player.Level;
                 }
             }
             if(player.Level == 0)
@@ -289,14 +289,14 @@ namespace GameStateManagement {
 
             player.Draw(spriteBatch);
 
-            spriteBatch.DrawString(gameFont, "HP: " + player.Health, new Vector2(0, 0), Color.Red);
-            spriteBatch.DrawString(gameFont, "Armor: " + player.ArmorClass, new Vector2(0, 100), Color.Green);
-            spriteBatch.DrawString(gameFont, "Attack: " + player.AttackBonus, new Vector2(0, 200), Color.Purple);
-            spriteBatch.DrawString(gameFont, "Experience: " + player.Experience, new Vector2(0, 300), Color.Purple);
+            spriteBatch.DrawString(gameFont, "HP:  " + player.Health, new Vector2(0, 50), Color.Red, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
+            spriteBatch.DrawString(gameFont, "Armor:  " + player.ArmorClass, new Vector2(0, 100), Color.Green, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
+            spriteBatch.DrawString(gameFont, "Attack:   " + player.AttackBonus, new Vector2(0, 150), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
+            spriteBatch.DrawString(gameFont, "Experience: " + player.Experience, new Vector2(0, 200), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
 
-            spriteBatch.DrawString(gameFont, "Level: " + player.Level, new Vector2(0, 400), Color.Purple);
+            spriteBatch.DrawString(gameFont, "Level:  " + player.Level, new Vector2(0, 250), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
 
-            spriteBatch.DrawString(gameFont, "Log: " + player.Log, new Vector2(0, 450), Color.Purple);
+            spriteBatch.DrawString(gameFont, "Log:  " + player.Log, new Vector2(0, 450), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
 
             currentMap.Draw(spriteBatch);
 

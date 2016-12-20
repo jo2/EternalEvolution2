@@ -65,8 +65,8 @@ namespace GameStateManagementSample
                 defender.Health -= damage;
                 // Write a combat message to the debug log.
                 // Later we'll add this to the game UI
-                Debug.WriteLine("{0} hit {1} for {2} and he has {3} health remaining.", attacker.Name, defender.Name, damage, defender.Health);
-                player.Log = String.Format("{0} hit {1} for {2} and he has {3} health remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                Debug.WriteLine("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                player.Log = String.Format("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
                 if (defender.Health <= 0)
                 {
                     if (defender is Mob)
