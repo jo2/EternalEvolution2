@@ -112,3 +112,21 @@ C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\Gam
 C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\spejss\Documents\GitHub\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.csprojResolveAssemblyReference.cache
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\backgroundMusic.wma
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\backgroundMusic.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\Body_Hit_32.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_floor.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_wall.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\door.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\ee_gradient.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\forest_floor.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\forest_wall.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\menu_background.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\mob_gold.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\mob_green.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_roofcenter.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_rooffrontcenter.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_rooffrontleft.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_rooffrontright.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_roofleft.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_roofright.xnb
