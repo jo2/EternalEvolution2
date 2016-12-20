@@ -14,6 +14,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Threading;
 
 #endregion Using Statements
 
@@ -138,7 +139,7 @@ namespace GameStateManagement
                 SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
                 SpriteFont font = ScreenManager.Font;
 
-                const string message = "Loading...";
+                const string message = "Find  out  what  the  deepest  parts  of  the  Earth  hold.";
 
                 // Center the text in the viewport.
                 Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
@@ -151,6 +152,7 @@ namespace GameStateManagement
                 // Draw the text.
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font, message, textPosition, color);
+                //spriteBatch.DrawString(font, "", new Vector2(textPosition.X,textPosition.Y+25), color);
                 spriteBatch.End();
             }
         }
