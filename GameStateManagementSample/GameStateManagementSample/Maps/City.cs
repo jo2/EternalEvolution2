@@ -13,14 +13,24 @@ namespace GameStateManagementSample.Maps {
     public class City : EternalEvolutionMap {
         private Cell exit;
 
-        private Texture2D wallSprite;
         private Texture2D floorSprite;
+        private Texture2D wallSprite;
         private Texture2D doorSprite;
+
+        private Texture2D leftRoofSprite;
+        private Texture2D middleRoofSprite;
+        private Texture2D rightRoofSprite;
+        private Texture2D leftRoofFrontSprite;
+        private Texture2D middleRoofFrontSprite;
+        private Texture2D rightRoofFrontSprite;
+
+
+        private CityMapCreationStrategy<Map> mapCreationStrategy;
 
         public City(ContentManager lContent) : base(lContent) {
             LoadSprites();
 
-            IMapCreationStrategy<Map> mapCreationStrategy = new ForestMapCreationStrategy<Map>(mapWidth, mapHeight);
+            mapCreationStrategy = new CityMapCreationStrategy<Map>(mapWidth, mapHeight);
             map = Map.Create(mapCreationStrategy);
 
             exit = map.GetCell(1, 1);
@@ -43,14 +53,20 @@ namespace GameStateManagementSample.Maps {
                     tint = Color.Gray;
                 }
                 if (cell.IsWalkable) {
-                    spriteBatch.Draw(floorSprite, position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 0.8f);
+                    spriteBatch.Draw(floorSprite, position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 1);
                 } else {
                     spriteBatch.Draw(wallSprite, position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 0.8f);
+                }
+                string s;
+                Tuple<int, int> t = Tuple.Create(cell.X, cell.Y);
+                if (mapCreationStrategy.specialCells.ContainsKey(t)) {
+                    mapCreationStrategy.specialCells.TryGetValue(t, out s);
+                    spriteBatch.Draw(content.Load<Texture2D>(s), position, null, null, null, 0.0f, new Vector2(scale, scale), tint, SpriteEffects.None, 0.1f);
                 }
             }
 
             var exitPos = new Vector2(exit.X * sizeOfSprites * scale, exit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
             
             base.Draw(spriteBatch);
         }
