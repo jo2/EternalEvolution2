@@ -65,7 +65,14 @@ namespace GameStateManagementSample
                 defender.Health -= damage;
                 // Write a combat message to the debug log.
                 // Later we'll add this to the game UI
-                Debug.WriteLine("{0} hit {1} for {2} and he has {3} health remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                Debug.WriteLine("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                //player.Log = String.Format("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                if(attacker.Name.Contains("Rouge"))
+                {
+                    Console.WriteLine("Attacker Name: " + attacker.Name);
+                    player.Log = "hit for " + damage + "and";
+                }
+               
                 if (defender.Health <= 0)
                 {
                     if (defender is Mob)
@@ -87,9 +94,28 @@ namespace GameStateManagementSample
                         }
                         else
                         {
-                            random.AttackBonus = rnd.Next(0, 5);
-                            random.ArmorClass = rnd.Next(0, 5);
-                            random.Health = rnd.Next(0, 20); 
+                            int shouldAddHP = rnd.Next(0, 1);
+                            if (shouldAddHP == 1)
+                            {
+                                random.Health = rnd.Next(0, 20);
+                                if (random.Health > 0)
+                                {
+                                    random.AttackBonus = 0;
+                                    random.ArmorClass = 0;
+                                }
+                                else
+                                {
+                                    random.AttackBonus = rnd.Next(0, 5);
+                                    random.ArmorClass = rnd.Next(0, 5);
+                                }
+
+                            }
+                            else
+                            {
+                                random.AttackBonus = rnd.Next(0, 5);
+                                random.ArmorClass = rnd.Next(0, 5);
+                            }
+                      
                         }
 
                        
