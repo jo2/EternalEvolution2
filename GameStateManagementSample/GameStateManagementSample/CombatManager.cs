@@ -66,7 +66,13 @@ namespace GameStateManagementSample
                 // Write a combat message to the debug log.
                 // Later we'll add this to the game UI
                 Debug.WriteLine("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
-                player.Log = String.Format("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                //player.Log = String.Format("{0}  hit  {1}  for  {2}  and  he  has  {3}  health  remaining.", attacker.Name, defender.Name, damage, defender.Health);
+                if(attacker.Name.Contains("Rouge"))
+                {
+                    Console.WriteLine("Attacker Name: " + attacker.Name);
+                    player.Log = "hit for " + damage + "and";
+                }
+               
                 if (defender.Health <= 0)
                 {
                     if (defender is Mob)

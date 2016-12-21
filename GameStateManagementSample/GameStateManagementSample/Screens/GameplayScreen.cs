@@ -28,7 +28,7 @@ using GameStateManagementSample.Maps;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.IO;
-
+using System.Text.RegularExpressions;
 #endregion Using Statements
 
 namespace GameStateManagement {
@@ -297,7 +297,15 @@ namespace GameStateManagement {
             spriteBatch.DrawString(gameFont, "Level:  " + player.Level, new Vector2(0, 250), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
 
             spriteBatch.DrawString(gameFont, "Log:  " + player.Log, new Vector2(0, 450), Color.Purple, 0.0f, new Vector2(0, 0), 0.5f, 0, 0);
+            if (player.Log.Contains("hit"))
+            {
+                int s = player.Log.IndexOf("for") + 3;
+                //spriteBatch.DrawString(gameFont, "-" + Regex.Replace(player.Log.Substring(s, 3), "[^0-9.]", ""), new Vector2(player.X * 64 * player.Scale, player.Y * 64 * player.Scale), Color.DarkRed, 0.0f, new Vector2(0, 0), 0.5f, 0, 1);
+                //spriteBatch.DrawString(gameFont, "-" + Regex.Replace(player.Log.Substring(s, 3), "[^0-9.]", ""), new Vector2(0,0), Color.DarkRed, 0.0f, new Vector2(0, 0), 0.5f, 0, 1);
+                spriteBatch.DrawString(gameFont, "-" + Regex.Replace(player.Log.Substring(s, 3), "[^0-9.]", ""), new Vector2(player.X * 16, player.Y * 16 - 10), Color.Red, 0.0f, new Vector2(0, 0), 0.4f, 0, 0);
 
+                Console.WriteLine("Player X: " + player.X * 16 + " " + player.Y * 16);
+            }
             currentMap.Draw(spriteBatch);
 
             spriteBatch.End();
