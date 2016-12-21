@@ -90,15 +90,15 @@ namespace GameStateManagementSample.Maps {
             }
 
             var exitPos = new Vector2(leftExit.X * sizeOfSprites * scale, leftExit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
             exitPos = new Vector2(rightExit.X * sizeOfSprites * scale, rightExit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
             exitPos = new Vector2(topExit.X * sizeOfSprites * scale, topExit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
             exitPos = new Vector2(bottomExit.X * sizeOfSprites * scale, bottomExit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
             exitPos = new Vector2(centerExit.X * sizeOfSprites * scale, centerExit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
 
             base.Draw(spriteBatch);
         }

@@ -32,37 +32,60 @@ namespace GameStateManagementSample.Maps {
             }
 
             for (int i = 5; i < 42; i = i + 7) {
-                for (int j = 3; j < 20; j = j + 8) {
-                    makeHouse(i, j, 5, 6, map);
+                for (int j = 4; j < 24; j = j + 8) {
+                    if (j > 19) {
+                        makeHouse(i, j, 5, 6, map, true);
+                    } else {
+                        makeHouse(i, j, 5, 6, map, false);
+                    }
+
                 }
             }
 
             return map;
         }
 
-        private void makeHouse(int x, int y, int width, int height, T map) {
-            //specialCells.Add(Tuple.Create(x, y), "city_roofcenter"); 
-            //map.SetCellProperties(x, y, true, false); 
+        private void makeHouse(int x, int y, int width, int height, T map, bool doorVisible) {
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     if (j == height - 1) {
-                        if (i < 1) {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_rooffrontleft");
-                        } else if (i > 3) {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_rooffrontright");
+                        if (doorVisible && (j == height - 1) && (i == 2)) {
+                            Console.WriteLine("draw door");
+                            specialCells.Add(Tuple.Create(x + i, y + j), "city_door");
+                        }
+                        if (i < 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - i - 2), "city2_roofleftfront");
+                        } else if (i > 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - (6 - i)), "city2_roofrightfront");
                         } else {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_rooffrontcenter");
+                            specialCells.Add(Tuple.Create(x + i, y + j - 4), "city2_roofcenterfront");
+                        }
+                    } else if (j == 0) {
+                        if (i < 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - i - 2), "city2_roofleftback");
+                        } else if (i > 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - (6 - i)), "city2_roofrightback");
+                        } else {
+                            specialCells.Add(Tuple.Create(x + i, y + j - 4), "city2_roofcenterback");
                         }
                     } else {
-                        if (i < 1) {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_roofleft");
-                        } else if (i > 3) {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_roofright");
+                        if (i < 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - i - 2), "city2_roofleft");
+                        } else if (i > 2) {
+                            specialCells.Add(Tuple.Create(x + i, y + j - (6 - i)), "city2_roofright");
                         } else {
-                            specialCells.Add(Tuple.Create(x + i, y + j), "city_roofcenter");
+                            specialCells.Add(Tuple.Create(x + i, y + j - 4), "city2_center");
                         }
                     }
-                    map.SetCellProperties(x + i, y + j, true, false);
+                    if ((j == height - 2 || j == height - 1) && (i == 1 || i == 3)) {
+                        specialCells.Add(Tuple.Create(x + i, y + j - 1), "city_window");
+                    }
+                    map.SetCellProperties(x + i, y + j, false, false);
+                }
+                if (doorVisible) {
+                    //specialCells.Add(Tuple.Create(x + 1, y + height - 1), "city_window");
+                    //specialCells.Add(Tuple.Create(x + 3, y + height - 1), "city_window");
+
                 }
             }
         }

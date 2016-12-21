@@ -130,3 +130,14 @@ C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalE
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_rooffrontright.xnb
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_roofleft.xnb
 C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_roofright.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_center.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofcenterback.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofcenterfront.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofleft.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofleftback.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofleftfront.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofright.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofrightback.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city2_roofrightfront.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_door.xnb
+C:\Users\Johannes Teklote\Documents\Uni Projekte\Seminar Computerspiele\EternalEvolution2\GameStateManagementSample\GameStateManagementSample\bin\Windows\Debug\Content\city_window.xnb

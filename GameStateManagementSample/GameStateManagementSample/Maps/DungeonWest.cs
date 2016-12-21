@@ -108,7 +108,7 @@ namespace GameStateManagementSample.Maps {
             }
 
             var exitPos = new Vector2(exit.X * sizeOfSprites * scale, exit.Y * sizeOfSprites * scale);
-            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.8f);
+            spriteBatch.Draw(doorSprite, exitPos, null, null, null, 0.0f, new Vector2(scale, scale), Color.Gray, SpriteEffects.None, 0.1f);
 
             base.Draw(spriteBatch);
         }
